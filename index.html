@@ -1,264 +1,2642 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TempliVibe – قالب‌های گرافیکی حرفه‌ای</title>
-  
-  <!-- فونت فارسی وزیرمتین -->
-  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"/>
-  
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { vazir: ['Vazirmatn', 'sans-serif'] },
-          colors: {
-            neoncyan: '#00fff5',
-            neonpurple: '#ff00ff',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempliVibe - فروش قالب‌های گرافیکی حرفه‌ای</title>
+    
+    <!-- Vazirmatn Font -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        :root {
+            --neon-cyan: #00fff5;
+            --neon-purple: #ff00ff;
+            --neon-pink: #ff006e;
+            --dark-bg: #0a0a0f;
+            --dark-card: #12121a;
+            --dark-secondary: #1a1a25;
+            --glass-bg: rgba(18, 18, 26, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
         }
-      }
-    }
-  </script>
 
-  <style>
-    body { background: #000; color: #fff; font-family: 'Vazirmatn', sans-serif; }
-    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); }
-    .btn-neon { @apply px-8 py-4 bg-gradient-to-r from-neoncyan to-neonpurple text-black font-bold rounded-xl shadow-lg hover:scale-110 transition duration-300; }
-    .input-neon { @apply w-full px-6 py-4 bg-white/10 border border-gray-600 rounded-xl text-white focus:border-neoncyan outline-none transition; }
-    .gallery-img { transition: all 0.7s ease; }
-    .gallery-img:hover { transform: scale(1.15); }
-    .hidden { display: none !important; }
-  </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'B Nazanin', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px rgba(0, 255, 245, 0.3); }
+            50% { box-shadow: 0 0 40px var(--neon-cyan), 0 0 80px rgba(0, 255, 245, 0.5); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { border-color: var(--neon-cyan); }
+            50% { border-color: var(--neon-purple); }
+        }
+
+        /* Background Effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 245, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 245, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow-1 {
+            top: -200px;
+            right: -200px;
+            background: var(--neon-cyan);
+        }
+
+        .bg-glow-2 {
+            bottom: -200px;
+            left: -200px;
+            background: var(--neon-purple);
+        }
+
+        .bg-glow-3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--neon-pink);
+            opacity: 0.08;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background: rgba(10, 10, 15, 0.95);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            color: var(--dark-bg);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--dark-bg);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 245, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 245, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 245, 0.2);
+        }
+
+        .btn-glass {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .btn-large {
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            border-radius: 16px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(0, 255, 245, 0.1);
+            border: 1px solid rgba(0, 255, 245, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: var(--dark-card);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image-container:hover .hero-image {
+            transform: scale(1.05);
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(10, 10, 15, 0.95), transparent);
+        }
+
+        .hero-image-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 0, 255, 0.2);
+            border: 1px solid var(--neon-purple);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--neon-purple);
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 15px 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-card-1 {
+            top: 20%;
+            right: -30px;
+            animation-delay: 0s;
+        }
+
+        .floating-card-2 {
+            bottom: 20%;
+            left: -30px;
+            animation-delay: 1s;
+        }
+
+        .floating-card-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .floating-card-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .floating-card-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Gallery Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--neon-purple);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--dark-card);
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: fadeIn 0.5s ease-out both;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 20px 40px rgba(0, 255, 245, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(10, 10, 15, 0.9), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .gallery-info p {
+            font-size: 0.85rem;
+            color: var(--neon-cyan);
+        }
+
+        .gallery-zoom {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 245, 0.2);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-zoom {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 60px rgba(0, 255, 245, 0.3);
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 0, 110, 0.2);
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 20px 40px rgba(0, 255, 245, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(0, 255, 245, 0.1), rgba(255, 0, 255, 0.1));
+            border: 1px solid rgba(0, 255, 245, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--neon-cyan);
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--dark-bg);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Pricing Section */
+        .pricing-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 50px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            animation: borderGlow 3s infinite;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--neon-cyan), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .pricing-popular {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 20px;
+        }
+
+        .pricing-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pricing-price span {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features i {
+            color: var(--neon-cyan);
+        }
+
+        .pricing-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+        }
+
+        /* Badges Grid */
+        .badges-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .badge-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .badge-item:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .badge-item i {
+            color: var(--neon-cyan);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 255, 245, 0.05), rgba(255, 0, 255, 0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 80px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300fff5' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-card);
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--dark-bg);
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-cyan);
+            transform: translateX(-5px);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-copyright span {
+            color: var(--neon-cyan);
+        }
+
+        /* Sticky Mobile CTA */
+        .mobile-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            z-index: 999;
+            display: none;
+        }
+
+        .mobile-cta .btn {
+            width: 100%;
+        }
+
+        /* Admin Panel Styles */
+        .admin-page {
+            display: none;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .admin-page.active {
+            display: block;
+        }
+
+        .login-container {
+            max-width: 450px;
+            margin: 100px auto;
+            animation: slideUp 0.5s ease;
+        }
+
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .login-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--dark-bg);
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--dark-secondary);
+            border: 2px solid var(--glass-border);
+            border-radius: 14px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 245, 0.2);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .error-message {
+            background: rgba(255, 0, 110, 0.1);
+            border: 1px solid var(--neon-pink);
+            border-radius: 12px;
+            padding: 15px;
+            color: var(--neon-pink);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideUp 0.3s ease;
+        }
+
+        /* Dashboard */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .stat-card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(0, 255, 245, 0.1), rgba(255, 0, 255, 0.1));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+        }
+
+        .stat-card-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .stat-card-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .admin-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 30px;
+        }
+
+        .admin-section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-section-title i {
+            color: var(--neon-cyan);
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .image-upload-area {
+            border: 2px dashed var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-upload-area:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 255, 245, 0.05);
+        }
+
+        .image-upload-area i {
+            font-size: 3rem;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-top: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .gallery-manage {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-manage-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .gallery-manage-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .gallery-manage-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .gallery-manage-btn {
+            width: 35px;
+            height: 35px;
+            background: rgba(10, 10, 15, 0.8);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-manage-btn:hover {
+            background: var(--neon-pink);
+            border-color: var(--neon-pink);
+        }
+
+        .gallery-manage-btn.move {
+            cursor: grab;
+        }
+
+        .gallery-manage-btn.move:hover {
+            background: var(--neon-cyan);
+            border-color: var(--neon-cyan);
+        }
+
+        textarea.form-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .save-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 255, 245, 0.1);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 50px;
+            color: var(--neon-cyan);
+            font-size: 0.9rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-manage {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-image {
+                height: 350px;
+            }
+            
+            .floating-card {
+                display: none;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .pricing-card {
+                padding: 35px 25px;
+            }
+            
+            .cta-section {
+                padding: 50px 30px;
+                border-radius: 24px;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-brand {
+                max-width: 100%;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-links a {
+                justify-content: center;
+            }
+            
+            .footer-bottom {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .mobile-cta {
+                display: block;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-manage {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .btn-large {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-manage {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-card {
+                padding: 35px 25px;
+            }
+        }
+
+        /* Page transitions */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100vh;
+            background: var(--dark-card);
+            border-left: 1px solid var(--glass-border);
+            z-index: 1001;
+            padding: 30px;
+            transition: right 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .mobile-menu-cta {
+            margin-top: 40px;
+        }
+
+        .mobile-menu-cta .btn {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
-<body class="min-h-screen">
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
 
-<!-- ====================== صفحه اصلی ====================== -->
-<div id="mainPage">
-  <!-- Hero -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-cyan-900/20"></div>
-    <div class="container mx-auto px-6 text-center relative z-10">
-      <h1 id="mainTitle" class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-        تمپلی وایب<br><span class="text-neoncyan">قالب‌های گرافیکی حرفه‌ای</span>
-      </h1>
-      <p id="mainSubtitle" class="text-xl md:text-2xl text-gray-300 mb-10">
-        قالب‌های آماده برای ویرایش سریع در Canva
-      </p>
-      
-      <a href="https://t.me/TempliVibe" target="_blank" class="inline-block btn-neon text-xl">
-        خرید از تلگرام
-      </a>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
-      <div class="mt-16 max-w-5xl mx-auto">
-        <img id="heroPreview" src="https://via.placeholder.com/1200x800/111/00fff5?text=Hero+Preview" alt="پیش‌نمایش قالب"
-             class="w-full rounded-2xl shadow-2xl hover:scale-105 transition duration-700" loading="lazy"/>
-      </div>
-    </div>
-  </section>
-
-  <!-- گالری -->
-  <section class="py-20 px-6">
-    <div class="container mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-neoncyan">نمونه قالب‌ها</h2>
-      <div id="galleryContainer" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- تصاویر گالری اینجا با JS اضافه میشن -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ویژگی‌ها -->
-  <section class="py-20">
-    <div class="container mx-auto px-6 text-center">
-      <div class="grid md:grid-cols-3 gap-10 mb-16">
-        <div class="glass border border-neoncyan/30 rounded-2xl p-8 hover:border-neonpurple transition">
-          <h3 class="text-2xl font-bold text-neoncyan">۱۰۰٪ قابل ویرایش</h3>
-          <p class="mt-4 text-gray-300">تمام لایه‌ها جدا و قابل تغییر</p>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="#" class="logo">
+                <div class="logo-icon">T</div>
+                <span class="logo-text">TempliVibe</span>
+            </a>
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">
+                <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+            </button>
         </div>
-        <div class="glass border border-neonpurple/30 rounded-2xl p-8 hover:border-neoncyan transition">
-          <h3 class="text-2xl font-bold text-neonpurple">کیفیت پریمیوم</h3>
-          <p class="mt-4 text-gray-300">طراحی شده توسط طراح حرفه‌ای</p>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" onclick="closeMobileMenu()">صفحه اصلی</a></li>
+            <li><a href="#gallery" onclick="closeMobileMenu()">گالری قالب‌ها</a></li>
+            <li><a href="#features" onclick="closeMobileMenu()">ویژگی‌ها</a></li>
+            <li><a href="#pricing" onclick="closeMobileMenu()">قیمت</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">تماس</a></li>
+        </ul>
+        <div class="mobile-menu-cta">
+            <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary">
+                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                خرید از تلگرام
+            </a>
+            <button class="btn btn-glass" onclick="showAdminLogin(); closeMobileMenu();">
+                <i data-lucide="lock" style="width: 18px; height: 18px;"></i>
+                پنل مدیریت
+            </button>
         </div>
-        <div class="glass border border-neoncyan/30 rounded-2xl p-8 hover:border-neonpurple transition">
-          <h3 class="text-2xl font-bold text-neoncyan">به‌روزرسانی رایگان</h3>
-          <p class="mt-4 text-gray-300">قالب‌های جدید هر ماه</p>
-        </div>
-      </div>
-
-      <!-- Sticky CTA موبایل -->
-      <a href="https://t.me/TempliVibe" target="_blank"
-         class="fixed bottom-6 left-6 z-50 md:hidden px-8 py-5 bg-neoncyan text-black font-bold rounded-full shadow-2xl hover:scale-110 transition">
-        خرید از تلگرام
-      </a>
-    </div>
-  </section>
-
-  <!-- فوتر -->
-  <footer class="bg-black/80 backdrop-blur-md border-t border-gray-800 py-12">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-4 text-neonpurple">TempliVibe</h2>
-      <p class="text-gray-400">© ۱۴۰۴ تمام حقوق محفوظ است.</p>
-      <div class="flex justify-center gap-8 mt-6">
-        <a href="https://t.me/TempliVibe" class="text-neoncyan hover:text-neonpurple transition text-xl">تلگرام</a>
-      </div>
-      <button onclick="showAdminLogin()" class="mt-8 text-xs text-gray-600 hover:text-neoncyan transition">
-        ورود مدیریت
-      </button>
-    </div>
-  </footer>
-</div>
-
-<!-- ====================== پنل مدیریت ====================== -->
-<div id="adminPanel" class="hidden fixed inset-0 bg-black/95 z-50 overflow-y-auto">
-  <div class="min-h-screen flex items-center justify-center p-6">
-    <!-- صفحه لاگین -->
-    <div id="loginBox" class="glass border border-neonpurple/50 rounded-3xl p-12 max-w-md w-full">
-      <h1 class="text-4xl font-bold text-center mb-8 text-neoncyan">ورود مدیریت</h1>
-      <input type="password" id="adminPass" placeholder="رمز عبور" class="input-neon mb-6 text-lg">
-      <button onclick="checkLogin()" class="w-full btn-neon text-xl">ورود</button>
-      <p id="loginError" class="text-red-400 text-center mt-4 hidden">رمز اشتباه است. دوباره تلاش کنید.</p>
     </div>
 
-    <!-- داشبورد -->
-    <div id="dashboard" class="hidden container max-w-6xl mx-auto">
-      <div class="flex justify-between items-center mb-10">
-        <h1 class="text-4xl font-bold text-neoncyan">داشبورد TempliVibe</h1>
-        <button onclick="logout()" class="px-6 py-3 bg-red-600/80 rounded-xl hover:bg-red-500 transition">خروج</button>
-      </div>
+    <!-- Main Page -->
+    <div id="mainPage" class="page active">
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="#home" class="logo">
+                    <div class="logo-icon">T</div>
+                    <span class="logo-text">TempliVibe</span>
+                </a>
 
-      <div class="grid md:grid-cols-2 gap-10">
-        <!-- ویرایش اطلاعات اصلی -->
-        <div class="glass border border-neoncyan/30 rounded-2xl p-8">
-          <h2 class="text-2xl font-bold mb-6 text-neonpurple">ویرایش اطلاعات اصلی</h2>
-          <input id="editTitle" placeholder="عنوان اصلی" class="input-neon mb-4">
-          <input id="editSubtitle" placeholder="زیرعنوان" class="input-neon mb-4">
-          <button onclick="saveMainData()" class="btn-neon">ذخیره تغییرات</button>
+                <ul class="nav-links">
+                    <li><a href="#home">صفحه اصلی</a></li>
+                    <li><a href="#gallery">گالری قالب‌ها</a></li>
+                    <li><a href="#features">ویژگی‌ها</a></li>
+                    <li><a href="#pricing">قیمت</a></li>
+                    <li><a href="#contact">تماس</a></li>
+                </ul>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-glass" onclick="showAdminLogin()">
+                        <i data-lucide="lock" style="width: 16px; height: 16px;"></i>
+                        مدیریت
+                    </button>
+                    <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary">
+                        <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+                        خرید از تلگرام
+                    </a>
+                    <button class="mobile-menu-btn" onclick="openMobileMenu()">
+                        <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="hero-badge">
+                            <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+                            قالب‌های حرفه‌ای و آماده ویرایش
+                        </div>
+                        <h1 class="hero-title" id="heroTitle">
+                            تمپلی‌وایب
+                            <br>
+                            <span>فروش قالب‌های گرافیکی حرفه‌ای</span>
+                        </h1>
+                        <p class="hero-subtitle" id="heroSubtitle">
+                            قالب‌های آماده برای ویرایش سریع و حرفه‌ای. با استفاده از قالب‌های ما، زمان طراحی خود را به حداقل برسانید و نتیجه‌ای شگفت‌انگیز بگیرید.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary btn-large" id="heroBtn">
+                                <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                                خرید از تلگرام
+                            </a>
+                            <a href="#gallery" class="btn btn-secondary btn-large">
+                                <i data-lucide="image" style="width: 20px; height: 20px;"></i>
+                                مشاهده گالری
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-value" id="statTemplates">۱۵۰+</div>
+                                <div class="stat-label">قالب آماده</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="statCustomers">۵۰۰+</div>
+                                <div class="stat-label">مشتری راضی</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="statDownloads">۲۰۰۰+</div>
+                                <div class="stat-label">دانلود موفق</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-image-container">
+                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop" 
+                                 alt="Hero Template" 
+                                 class="hero-image"
+                                 id="heroImage"
+                                 loading="lazy">
+                            <div class="hero-image-overlay">
+                                <div class="hero-image-badge">
+                                    <i data-lucide="star" style="width: 16px; height: 16px;"></i>
+                                    قالب پرفروش ماه
+                                </div>
+                            </div>
+                        </div>
+                        <div class="floating-card floating-card-1">
+                            <div class="floating-card-icon">
+                                <i data-lucide="palette" style="width: 20px; height: 20px;"></i>
+                            </div>
+                            <div class="floating-card-text">فرمت‌های موجود</div>
+                            <div class="floating-card-value">PSD, AI, Canva</div>
+                        </div>
+                        <div class="floating-card floating-card-2">
+                            <div class="floating-card-icon">
+                                <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
+                            </div>
+                            <div class="floating-card-text">ویرایش آسان</div>
+                            <div class="floating-card-value">۱۰۰٪ قابل ویرایش</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section" id="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <i data-lucide="layout-grid" style="width: 16px; height: 16px;"></i>
+                        نمونه کارها
+                    </div>
+                    <h2 class="section-title">
+                        گالری <span>قالب‌های حرفه‌ای</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        مجموعه‌ای از بهترین قالب‌های طراحی شده توسط تیم تمپلی‌وایب
+                    </p>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery items will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <i data-lucide="award" style="width: 16px; height: 16px;"></i>
+                        چرا TempliVibe؟
+                    </div>
+                    <h2 class="section-title">
+                        مزایای <span>انتخاب ما</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        دلایلی که ما را به بهترین انتخاب برای نیازهای گرافیکی شما تبدیل می‌کند
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="edit-3" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">ویرایش آسان</h3>
+                        <p class="feature-desc">
+                            تمامی قالب‌ها کاملاً قابل ویرایش هستند و می‌توانید به راحتی متن، رنگ و تصاویر را تغییر دهید.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="crown" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">کیفیت پریمیوم</h3>
+                        <p class="feature-desc">
+                            طراحی‌های منحصر به فرد با کیفیت بالا که توسط طراحان حرفه‌ای ایجاد شده‌اند.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="download" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3 class="feature-title">دانلود فوری</h3>
+                        <p class="feature-desc">
+                            بلافاصله پس از خرید، لینک دانلود قالب‌ها برای شما ارسال می‌شود.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="badges-grid">
+                    <div class="badge-item">
+                        <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                        Editable
+                    </div>
+                    <div class="badge-item">
+                        <i data-lucide="star" style="width: 20px; height: 20px;"></i>
+                        Premium
+                    </div>
+                    <div class="badge-item">
+                        <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
+                        High Quality
+                    </div>
+                    <div class="badge-item">
+                        <i data-lucide="refresh-cw" style="width: 20px; height: 20px;"></i>
+                        آپدیت رایگان
+                    </div>
+                    <div class="badge-item">
+                        <i data-lucide="headphones" style="width: 20px; height: 20px;"></i>
+                        پشتیبانی ۲۴/۷
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="section" id="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <i data-lucide="tag" style="width: 16px; height: 16px;"></i>
+                        قیمت‌گذاری
+                    </div>
+                    <h2 class="section-title">
+                        پکیج <span>ویژه قالب‌ها</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        با خرید پکیج کامل، به تمام قالب‌ها با بهترین قیمت دسترسی پیدا کنید
+                    </p>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-popular">
+                            <i data-lucide="flame" style="width: 16px; height: 16px;"></i>
+                            پرفروش‌ترین
+                        </div>
+                        <h3 class="pricing-name" id="pricingName">پکیج حرفه‌ای</h3>
+                        <div class="pricing-price">
+                            <span id="pricingPrice">۱۴۹,۰۰۰</span>
+                            <span>تومان</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
+                            <span id="featureCount">بیش از ۱۵۰ قالب آماده</span>
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
+                            فرمت‌های PSD, AI و Canva
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
+                            آپدیت‌های رایگان مادام‌العمر
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
+                            پشتیبانی ۲۴ ساعته
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
+                            دسترسی به قالب‌های جدید
+                        </li>
+                    </ul>
+                    <div class="pricing-cta">
+                        <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary btn-large" id="pricingTelegramBtn">
+                            <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                            خرید از تلگرام
+                        </a>
+                        <button class="btn btn-secondary btn-large">
+                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                            سوال دارید؟ پیام دهید
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="cta-section">
+                    <h2 class="cta-title">
+                        همین الان شروع کنید! 🚀
+                    </h2>
+                    <p class="cta-subtitle">
+                        با خرید قالب‌های حرفه‌ای ما، کسب‌وکار خود را یک قدم جلوتر ببرید
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary btn-large" id="ctaTelegramBtn">
+                            <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                            خرید از تلگرام
+                        </a>
+                        <a href="#gallery" class="btn btn-glass btn-large">
+                            <i data-lucide="eye" style="width: 20px; height: 20px;"></i>
+                            مشاهده نمونه‌ها
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="#" class="logo">
+                            <div class="logo-icon">T</div>
+                            <span class="logo-text">TempliVibe</span>
+                        </a>
+                        <p class="footer-desc">
+                            تمپلی‌وایب، مرجع فروش قالب‌های گرافیکی حرفه‌ای. ما به شما کمک می‌کنیم تا با کمترین زمان، بهترین طراحی‌ها را داشته باشید.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://t.me/TempliVibe" target="_blank" title="Telegram">
+                                <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                            </a>
+                            <a href="#" target="_blank" title="Instagram">
+                                <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
+                            </a>
+                            <a href="#" target="_blank" title="Twitter">
+                                <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">لینک‌های سریع</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home">صفحه اصلی</a></li>
+                            <li><a href="#gallery">گالری</a></li>
+                            <li><a href="#features">ویژگی‌ها</a></li>
+                            <li><a href="#pricing">قیمت</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">خدمات</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">قالب‌های Canva</a></li>
+                            <li><a href="#">قالب‌های PSD</a></li>
+                            <li><a href="#">قالب‌های Illustrator</a></li>
+                            <li><a href="#">طراحی سفارشی</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">تماس با ما</h4>
+                        <ul class="footer-links">
+                            <li>
+                                <a href="https://t.me/TempliVibe" target="_blank">
+                                    <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+                                    @TempliVibe
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:info@templivibe.com">
+                                    <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                                    info@templivibe.com
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-copyright">
+                        © ۱۴۰۳ <span>TempliVibe</span>. تمامی حقوق محفوظ است.
+                    </p>
+                    <div class="nav-buttons">
+                        <button class="btn btn-glass" onclick="showAdminLogin()" style="padding: 8px 16px; font-size: 0.85rem;">
+                            <i data-lucide="settings" style="width: 14px; height: 14px;"></i>
+                            ورود به پنل
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Sticky Mobile CTA -->
+        <div class="mobile-cta">
+            <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary">
+                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                خرید از تلگرام
+            </a>
         </div>
-
-        <!-- آپلود تصویر هیرو -->
-        <div class="glass border border-neonpurple/30 rounded-2xl p-8">
-          <h2 class="text-2xl font-bold mb-6 text-neoncyan">تصویر اصلی (Hero)</h2>
-          <input type="file" accept="image/*" id="heroUpload" class="mb-4 text-gray-300">
-          <button onclick="uploadHero()" class="btn-neon">آپلود و ذخیره</button>
-        </div>
-      </div>
-
-      <!-- مدیریت گالری -->
-      <div class="mt-12 glass border border-neoncyan/30 rounded-2xl p-8">
-        <h2 class="text-2xl font-bold mb-6 text-neonpurple">مدیریت گالری (حداکثر ۸ تصویر)</h2>
-        <input type="file" multiple accept="image/*" id="galleryUpload" class="mb-4 text-gray-300">
-        <button onclick="uploadGallery()" class="btn-neon">آپلود تصاویر</button>
-        <button onclick="clearGallery()" class="ml-4 px-6 py-3 bg-red-600/70 rounded-xl hover:bg-red-500 transition">پاک کردن همه</button>
-      </div>
     </div>
-  </div>
-</div>
 
-<!-- ====================== اسکریپت‌ها ====================== -->
-<script>
-  const PASS = "4748temp";
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Preview" id="lightboxImage">
+        </div>
+    </div>
 
-// نمایش/مخفی کردن پنل
-function showAdminLogin() { document.getElementById('adminPanel').classList.remove('hidden'); }
-function checkLogin() {
-  const input = document.getElementById('adminPass').value;
-  if (input === PASS) {
-    document.getElementById('loginBox').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
-    loadAdminData();
-  } else {
-    document.getElementById('loginError').classList.remove('hidden');
-  }
-}
-function logout() {
-  document.getElementById('adminPanel').classList.add('hidden');
-  document.getElementById('loginBox').classList.remove('hidden');
-  document.getElementById('dashboard').classList.add('hidden');
-  document.getElementById('adminPass').value = '';
-  document.getElementById('loginError').classList.add('hidden');
-}
+    <!-- Admin Login Page -->
+    <div id="adminLoginPage" class="admin-page">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-icon">
+                    <i data-lucide="shield" style="width: 40px; height: 40px;"></i>
+                </div>
+                <h2 class="login-title">ورود به پنل مدیریت</h2>
+                <p class="login-subtitle">لطفاً رمز عبور را وارد کنید</p>
+                
+                <div class="error-message" id="loginError">
+                    <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
+                    <span>رمز اشتباه است. دوباره تلاش کنید.</span>
+                </div>
 
-// ذخیره و بازیابی اطلاعات اصلی
-function saveMainData() {
-  const data = {
-    title: document.getElementById('editTitle').value || "تمپلی وایب – قالب‌های گرافیکی حرفه‌ای",
-    subtitle: document.getElementById('editSubtitle').value || "قالب‌های آماده برای ویرایش سریع در Canva، Photoshop و Illustrator"
-  };
-  localStorage.setItem('siteData', JSON.stringify(data));
-  applyData();
-  alert("تغییرات با موفقیت ذخیره شد!");
-}
-function applyData() {
-  const saved = JSON.parse(localStorage.getItem('siteData') || '{}');
-  document.getElementById('mainTitle').innerHTML = saved.title || "تمپلی وایب<br><span class='text-neoncyan'>قالب‌های گرافیکی حرفه‌ای</span>";
-  document.getElementById('mainSubtitle').textContent = saved.subtitle || "قالب‌های آماده برای ویرایش سریع در Canva، Photoshop و Illustrator";
-}
-function loadAdminData() {
-  const saved = JSON.parse(localStorage.getItem('siteData') || '{}');
-  document.getElementById('editTitle').value = saved.title || "";
-  document.getElementById('editSubtitle').value = saved.subtitle || "";
-  loadHeroImage();
-  loadGallery();
-}
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label class="form-label">رمز عبور</label>
+                        <input type="password" 
+                               class="form-input" 
+                               id="adminPassword" 
+                               placeholder="رمز عبور را وارد کنید"
+                               autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
+                        <i data-lucide="log-in" style="width: 20px; height: 20px;"></i>
+                        ورود به پنل
+                    </button>
+                </form>
 
-// تصویر هیرو
-function uploadHero() {
-  const file = document.getElementById('heroUpload').files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      localStorage.setItem('heroImage', e.target.result);
-      loadHeroImage();
-      alert("تصویر هیرو با موفقیت آپلود شد!");
-    }
-    reader.readAsDataURL(file);
-  }
-}
-function loadHeroImage() {
-  const saved = localStorage.getItem('heroImage');
-  if (saved) document.getElementById('heroPreview').src = saved;
-}
+                <div style="margin-top: 25px;">
+                    <button class="btn btn-glass" onclick="showMainPage()" style="width: 100%;">
+                        <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                        بازگشت به سایت
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-// گالری
-function uploadGallery() {
-  const files = document.getElementById('galleryUpload').files;
-  let gallery = JSON.parse(localStorage.getItem('gallery') || '[]');
-  for (let file of files) {
-    const reader = new FileReader();
-    reader.onload = e => {
-      gallery.push(e.target.result);
-      if (gallery.length > 8) gallery = gallery.slice(-8); // حداکثر ۸ تا
-      localStorage.setItem('gallery', JSON.stringify(gallery));
-      loadGallery();
-    }
-    reader.readAsDataURL(file);
-  }
-}
-function loadGallery() {
-  const gallery = JSON.parse(localStorage.getItem('gallery') || '[]');
-  const container = document.getElementById('galleryContainer');
-  container.innerHTML = '';
-  gallery.forEach(src => {
-    const div = document.createElement('div');
-    div.className = "group relative overflow-hidden rounded-2xl border-2 border-transparent hover:border-neoncyan transition-all duration-500";
-    div.innerHTML = `<img src="${src}" class="w-full aspect-square object-cover gallery-img" alt="گالری"/>`;
-    container.appendChild(div);
-  });
-}
-function clearGallery() {
-  if (confirm("همه تصاویر گالری پاک شوند؟")) {
-    localStorage.removeItem('gallery');
-    loadGallery();
-  }
-}
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-page">
+        <div class="container">
+            <div class="dashboard-header">
+                <div>
+                    <h1 class="dashboard-title">
+                        <span style="background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">پنل مدیریت</span>
+                    </h1>
+                    <p style="color: var(--text-secondary);">مدیریت محتوای سایت TempliVibe</p>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <div class="save-indicator" id="saveIndicator" style="display: none;">
+                        <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+                        ذخیره شد
+                    </div>
+                    <button class="btn btn-secondary" onclick="showMainPage()">
+                        <i data-lucide="eye" style="width: 18px; height: 18px;"></i>
+                        مشاهده سایت
+                    </button>
+                    <button class="btn btn-glass" onclick="logout()">
+                        <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
+                        خروج
+                    </button>
+                </div>
+            </div>
 
-// اجرای اولیه
-applyData();
-loadHeroImage();
-loadGallery();
-</script>
-</body>
-</html>
+            <!-- Stats -->
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">
+                            <i data-lucide="package" style="width: 24px; height: 24px;"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="adminStatOrders">۱۲۵</div>
+                    <div class="stat-card-label">سفارشات</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">
+                            <i data-lucide="download" style="width: 24px; height: 24px;"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="adminStatDownloads">۲,۳۴۵</div>
+                    <div class="stat-card-label">دانلودها</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">
+                            <i data-lucide="users" style="width: 24px; height: 24px;"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="adminStatUsers">۵۸۷</div>
+                    <div class="stat-card-label">کاربران</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <div class="stat-card-icon">
+                            <i data-lucide="trending-up" style="width: 24px; height: 24px;"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="adminStatRevenue">۱۸.۵M</div>
+                    <div class="stat-card-label">درآمد (تومان)</div>
+                </div>
+            </div>
+
+            <!-- Hero Section Management -->
+            <div class="admin-section">
+                <h3 class="admin-section-title">
+                    <i data-lucide="layout" style="width: 22px; height: 22px;"></i>
+                    مدیریت بخش Hero
+                </h3>
+                <div class="admin-grid">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">عنوان اصلی</label>
+                            <input type="text" class="form-input" id="adminHeroTitle" 
+                                   value="تمپلی‌وایب" onchange="saveSettings()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">زیرعنوان</label>
+                            <textarea class="form-input" id="adminHeroSubtitle" 
+                                      onchange="saveSettings()">قالب‌های آماده برای ویرایش سریع و حرفه‌ای. با استفاده از قالب‌های ما، زمان طراحی خود را به حداقل برسانید و نتیجه‌ای شگفت‌انگیز بگیرید.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">لینک تلگرام</label>
+                            <input type="url" class="form-input" id="adminTelegramLink" 
+                                   value="https://t.me/TempliVibe" onchange="saveSettings()">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">تصویر اصلی Hero</label>
+                            <div class="image-upload-area" onclick="document.getElementById('heroImageUpload').click()">
+                                <i data-lucide="upload-cloud"></i>
+                                <p>کلیک کنید یا تصویر را بکشید</p>
+                                <input type="file" id="heroImageUpload" accept="image/*" 
+                                       style="display: none;" onchange="handleHeroImageUpload(event)">
+                            </div>
+                            <img src="" alt="Preview" class="image-preview" id="heroImagePreview" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Management -->
+            <div class="admin-section">
+                <h3 class="admin-section-title">
+                    <i data-lucide="tag" style="width: 22px; height: 22px;"></i>
+                    مدیریت قیمت‌گذاری
+                </h3>
+                <div class="admin-grid">
+                    <div class="form-group">
+                        <label class="form-label">نام پکیج</label>
+                        <input type="text" class="form-input" id="adminPricingName" 
+                               value="پکیج حرفه‌ای" onchange="saveSettings()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">قیمت (تومان)</label>
+                        <input type="text" class="form-input" id="adminPricingPrice" 
+                               value="۱۴۹,۰۰۰" onchange="saveSettings()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">تعداد قالب‌ها</label>
+                        <input type="text" class="form-input" id="adminTemplateCount" 
+                               value="بیش از ۱۵۰ قالب آماده" onchange="saveSettings()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Management -->
+            <div class="admin-section">
+                <h3 class="admin-section-title">
+                    <i data-lucide="image" style="width: 22px; height: 22px;"></i>
+                    مدیریت گالری
+                </h3>
+                
+                <div style="margin-bottom: 25px;">
+                    <button class="btn btn-primary" onclick="addGalleryItem()">
+                        <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
+                        افزودن تصویر جدید
+                    </button>
+                </div>
+
+                <div class="gallery-manage" id="adminGalleryGrid">
+                    <!-- Gallery items will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Default Gallery Data
+        const defaultGalleryItems = [
+            {
+                id: 1,
+                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
+                title: "پوستر کنسرت موسیقی",
+                category: "پوستر"
+            },
+            {
+                id: 2,
+                image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=400&fit=crop",
+                title: "قالب استوری اینستاگرام",
+                category: "شبکه اجتماعی"
+            },
+            {
+                id: 3,
+                image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop",
+                title: "طراحی لوگو مدرن",
+                category: "لوگو"
+            },
+            {
+                id: 4,
+                image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+                title: "بنر تبلیغاتی",
+                category: "بنر"
+            },
+            {
+                id: 5,
+                image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop",
+                title: "کارت ویزیت لوکس",
+                category: "کارت ویزیت"
+            },
+            {
+                id: 6,
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop",
+                title: "پوستر رویداد",
+                category: "پوستر"
+            },
+            {
+                id: 7,
+                image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&h=400&fit=crop",
+                title: "قالب پست اینستاگرام",
+                category: "شبکه اجتماعی"
+            },
+            {
+                id: 8,
+                image: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=600&h=400&fit=crop",
+                title: "طراحی منو رستوران",
+                category: "منو"
+            }
+        ];
+
+        // Default Settings
+        const defaultSettings = {
+            heroTitle: "تمپلی‌وایب",
+            heroSubtitle: "قالب‌های آماده برای ویرایش سریع و حرفه‌ای. با استفاده از قالب‌های ما، زمان طراحی خود را به حداقل برسانید و نتیجه‌ای شگفت‌انگیز بگیرید.",
+            heroImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
+            telegramLink: "https://t.me/TempliVibe",
+            pricingName: "پکیج حرفه‌ای",
+            pricingPrice: "۱۴۹,۰۰۰",
+            templateCount: "بیش از ۱۵۰ قالب آماده",
+            stats: {
+                orders: "۱۲۵",
+                downloads: "۲,۳۴۵",
+                users: "۵۸۷",
+                revenue: "۱۸.۵M"
+            }
+        };
+
+        // State
+        let isLoggedIn = false;
+        let loginAttempts = 0;
+        const MAX_LOGIN_ATTEMPTS = 5;
+        const CORRECT_PASSWORD = "4748temp";
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSettings();
+            loadGallery();
+            initScrollEffects();
+            initSmoothScroll();
+        });
+
+        // Load Settings from LocalStorage
+        function loadSettings() {
+            const saved = localStorage.getItem('templivibe_settings');
+            const settings = saved ? JSON.parse(saved) : defaultSettings;
+            
+            // Apply settings to main page
+            document.getElementById('heroTitle').innerHTML = `${settings.heroTitle}<br><span>فروش قالب‌های گرافیکی حرفه‌ای</span>`;
+            document.getElementById('heroSubtitle').textContent = settings.heroSubtitle;
+            document.getElementById('heroImage').src = settings.heroImage;
+            
+            // Update all telegram links
+            const telegramLinks = ['heroBtn', 'pricingTelegramBtn', 'ctaTelegramBtn'];
+            telegramLinks.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.href = settings.telegramLink;
+            });
+            
+            // Update pricing
+            document.getElementById('pricingName').textContent = settings.pricingName;
+            document.getElementById('pricingPrice').textContent = settings.pricingPrice;
+            document.getElementById('featureCount').textContent = settings.templateCount;
+            
+            // Update admin form
+            if (document.getElementById('adminHeroTitle')) {
+                document.getElementById('adminHeroTitle').value = settings.heroTitle;
+                document.getElementById('adminHeroSubtitle').value = settings.heroSubtitle;
+                document.getElementById('adminTelegramLink').value = settings.telegramLink;
+                document.getElementById('adminPricingName').value = settings.pricingName;
+                document.getElementById('adminPricingPrice').value = settings.pricingPrice;
+                document.getElementById('adminTemplateCount').value = settings.templateCount;
+                
+                // Show hero image preview
+                if (settings.heroImage) {
+                    document.getElementById('heroImagePreview').src = settings.heroImage;
+                    document.getElementById('heroImagePreview').style.display = 'block';
+                }
+            }
+        }
+
+        // Load Gallery
+        function loadGallery() {
+            const saved = localStorage.getItem('templivibe_gallery');
+            const gallery = saved ? JSON.parse(saved) : defaultGalleryItems;
+            
+            renderMainGallery(gallery);
+            renderAdminGallery(gallery);
+        }
+
+        // Render Main Gallery
+        function renderMainGallery(gallery) {
+            const grid = document.getElementById('galleryGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = gallery.map(item => `
+                <div class="gallery-item" onclick="openLightbox('${item.image}')">
+                    <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <h4>${item.title}</h4>
+                            <p>${item.category}</p>
+                        </div>
+                    </div>
+                    <div class="gallery-zoom">
+                        <i data-lucide="zoom-in" style="width: 24px; height: 24px;"></i>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+
+        // Render Admin Gallery
+        function renderAdminGallery(gallery) {
+            const grid = document.getElementById('adminGalleryGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = gallery.map(item => `
+                <div class="gallery-manage-item" data-id="${item.id}">
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="gallery-manage-actions">
+                        <button class="gallery-manage-btn move" title="جابجایی">
+                            <i data-lucide="move" style="width: 16px; height: 16px;"></i>
+                        </button>
+                        <button class="gallery-manage-btn" onclick="deleteGalleryItem(${item.id})" title="حذف">
+                            <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            lucide.createIcons();
+        }
+
+        // Save Settings
+        function saveSettings() {
+            const settings = {
+                heroTitle: document.getElementById('adminHeroTitle')?.value || defaultSettings.heroTitle,
+                heroSubtitle: document.getElementById('adminHeroSubtitle')?.value || defaultSettings.heroSubtitle,
+                heroImage: document.getElementById('heroImagePreview')?.src || defaultSettings.heroImage,
+                telegramLink: document.getElementById('adminTelegramLink')?.value || defaultSettings.telegramLink,
+                pricingName: document.getElementById('adminPricingName')?.value || defaultSettings.pricingName,
+                pricingPrice: document.getElementById('adminPricingPrice')?.value || defaultSettings.pricingPrice,
+                templateCount: document.getElementById('adminTemplateCount')?.value || defaultSettings.templateCount,
+                stats: defaultSettings.stats
+            };
+            
+            localStorage.setItem('templivibe_settings', JSON.stringify(settings));
+            
+            // Show save indicator
+            const indicator = document.getElementById('saveIndicator');
+            if (indicator) {
+                indicator.style.display = 'inline-flex';
+                setTimeout(() => {
+                    indicator.style.display = 'none';
+                }, 2000);
+            }
+            
+            // Apply changes to main page
+            loadSettings();
+        }
+
+        // Handle Hero Image Upload
+        function handleHeroImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('heroImagePreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    saveSettings();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add Gallery Item
+        function addGalleryItem() {
+            const url = prompt('لینک تصویر را وارد کنید:', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop');
+            if (!url) return;
+            
+            const title = prompt('عنوان تصویر:', 'قالب جدید');
+            const category = prompt('دسته‌بندی:', 'عمومی');
+            
+            const saved = localStorage.getItem('templivibe_gallery');
+            const gallery = saved ? JSON.parse(saved) : [...defaultGalleryItems];
+            
+            const newItem = {
+                id: Date.now(),
+                image: url,
+                title: title || 'قالب جدید',
+                category: category || 'عمومی'
+            };
+            
+            gallery.push(newItem);
+            localStorage.setItem('templivibe_gallery', JSON.stringify(gallery));
+            
+            renderMainGallery(gallery);
+            renderAdminGallery(gallery);
+            
+            // Show save indicator
+            const indicator = document.getElementById('saveIndicator');
+            if (indicator) {
+                indicator.style.display = 'inline-flex';
+                setTimeout(() => {
+                    indicator.style.display = 'none';
+                }, 2000);
+            }
+        }
+
+        // Delete Gallery Item
+        function deleteGalleryItem(id) {
+            if (!confirm('آیا از حذف این تصویر اطمینان دارید؟')) return;
+            
+            const saved = localStorage.getItem('templivibe_gallery');
+            let gallery = saved ? JSON.parse(saved) : [...defaultGalleryItems];
+            
+            gallery = gallery.filter(item => item.id !== id);
+            localStorage.setItem('templivibe_gallery', JSON.stringify(gallery));
+            
+            renderMainGallery(gallery);
+            renderAdminGallery(gallery);
+        }
+
+        // Lightbox
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox on click outside
+        document.getElementById('lightbox')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeMobileMenu();
+            }
+        });
+
+        // Navigation
+        function showMainPage() {
+            document.getElementById('mainPage').classList.add('active');
+            document.getElementById('adminLoginPage').classList.remove('active');
+            document.getElementById('adminDashboard').classList.remove('active');
+            loadSettings();
+            loadGallery();
+            lucide.createIcons();
+        }
+
+        function showAdminLogin() {
+            document.getElementById('mainPage').classList.remove('active');
+            document.getElementById('adminLoginPage').classList.add('active');
+            document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('loginError').classList.remove('show');
+            document.getElementById('adminPassword').value = '';
+            lucide.createIcons();
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('mainPage').classList.remove('active');
+            document.getElementById('adminLoginPage').classList.remove('active');
+            document.getElementById('adminDashboard').classList.add('active');
+            loadSettings();
+            loadGallery();
+            lucide.createIcons();
+        }
+
+        // Login Handler
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                document.getElementById('loginError').innerHTML = `
+                    <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
+                    <span>تعداد تلاش‌ها بیش از حد مجاز است. لطفاً بعداً تلاش کنید.</span>
+                `;
+                document.getElementById('loginError').classList.add('show');
+                lucide.createIcons();
+                return;
+            }
+            
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === CORRECT_PASSWORD) {
+                isLoggedIn = true;
+                loginAttempts = 0;
+                showAdminDashboard();
+            } else {
+                loginAttempts++;
+                document.getElementById('loginError').classList.add('show');
+                document.getElementById('adminPassword').value = '';
+                lucide.createIcons();
+            }
+        }
+
+        // Logout
+        function logout() {
+            isLoggedIn = false;
+            showAdminLogin();
+        }
+
+        // Mobile Menu
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.getElementById('mobileMenuOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('mobileMenuOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('mobileMenuOverlay')?.addEventListener('click', closeMobileMenu);
+
+        // Scroll Effects
+        function initScrollEffects() {
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 
