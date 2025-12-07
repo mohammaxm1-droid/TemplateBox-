@@ -3,26 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TempliVibe - فروش قالب‌های گرافیکی حرفه‌ای</title>
-    
-    <!-- Vazirmatn Font -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
+    <title>TempliVibe – فروش قالب‌های گرافیکی حرفه‌ای</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-cyan: #00fff5;
             --neon-purple: #ff00ff;
-            --neon-pink: #ff006e;
+            --neon-pink: #ff6b9d;
             --dark-bg: #0a0a0f;
             --dark-card: #12121a;
-            --dark-secondary: #1a1a25;
-            --glass-bg: rgba(18, 18, 26, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --dark-glass: rgba(18, 18, 26, 0.8);
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
+            --gradient-neon: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
         }
 
         * {
@@ -32,8 +25,8 @@
         }
 
         body {
-            font-family: 'Vazirmatn', 'B Nazanin', sans-serif;
-            background: var(--dark-bg);
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--dark-bg);
             color: var(--text-primary);
             line-height: 1.8;
             overflow-x: hidden;
@@ -43,13 +36,11 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: var(--dark-bg);
         }
-
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+            background: var(--neon-purple);
             border-radius: 4px;
         }
 
@@ -60,28 +51,23 @@
         }
 
         @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px rgba(0, 255, 245, 0.3); }
-            50% { box-shadow: 0 0 40px var(--neon-cyan), 0 0 80px rgba(0, 255, 245, 0.5); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-purple); }
+            50% { box-shadow: 0 0 40px var(--neon-cyan), 0 0 80px var(--neon-purple); }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         @keyframes gradientMove {
@@ -95,59 +81,95 @@
             50% { border-color: var(--neon-purple); }
         }
 
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-glow { animation: glow 3s ease-in-out infinite; }
+        .animate-slideUp { animation: slideUp 0.8s ease-out forwards; }
+        .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
+
         /* Background Effects */
         .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-image: 
                 linear-gradient(rgba(0, 255, 245, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 245, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
         }
 
-        .bg-glow {
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
+        .bg-gradient-radial {
+            background: radial-gradient(ellipse at center, rgba(255, 0, 255, 0.1) 0%, transparent 70%);
         }
 
-        .bg-glow-1 {
-            top: -200px;
-            right: -200px;
-            background: var(--neon-cyan);
-        }
-
-        .bg-glow-2 {
-            bottom: -200px;
-            left: -200px;
-            background: var(--neon-purple);
-        }
-
-        .bg-glow-3 {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--neon-pink);
-            opacity: 0.08;
-        }
-
-        /* Container */
+        /* Utility Classes */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 1;
+        }
+
+        .glass {
+            background: var(--dark-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .neon-border {
+            border: 2px solid transparent;
+            background: linear-gradient(var(--dark-card), var(--dark-card)) padding-box,
+                        var(--gradient-neon) border-box;
+        }
+
+        .neon-text {
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-neon);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(0, 255, 245, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(0, 255, 245, 0.5), 0 0 100px rgba(255, 0, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neon-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(0, 255, 245, 0.5);
+        }
+
+        .btn-telegram {
+            background: linear-gradient(135deg, #0088cc, #00c6ff);
+            color: white;
+        }
+
+        .btn-telegram:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 136, 204, 0.6);
         }
 
         /* Navigation */
@@ -157,59 +179,35 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 15px 0;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            padding: 20px 0;
             transition: all 0.3s ease;
         }
 
         .navbar.scrolled {
-            padding: 10px 0;
-            background: rgba(10, 10, 15, 0.95);
+            background: var(--dark-glass);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .nav-container {
+        .navbar-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 28px;
             font-weight: 900;
-            font-size: 20px;
-            color: var(--dark-bg);
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            background: var(--gradient-neon);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 40px;
             list-style: none;
         }
 
@@ -217,7 +215,6 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -229,96 +226,34 @@
             right: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            background: var(--gradient-neon);
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--text-primary);
+            color: var(--neon-cyan);
         }
 
         .nav-links a:hover::after {
             width: 100%;
         }
 
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 28px;
-            border-radius: 12px;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            color: var(--dark-bg);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 245, 0.4);
-        }
-
-        .btn-secondary {
+        .nav-admin-btn {
+            padding: 10px 25px;
             background: transparent;
-            border: 2px solid var(--neon-cyan);
-            color: var(--neon-cyan);
+            border: 1px solid var(--neon-purple);
+            color: var(--neon-purple);
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        .btn-secondary:hover {
-            background: rgba(0, 255, 245, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 245, 0.2);
-        }
-
-        .btn-glass {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--neon-cyan);
-            transform: translateY(-3px);
-        }
-
-        .btn-large {
-            padding: 18px 40px;
-            font-size: 1.1rem;
-            border-radius: 16px;
+        .nav-admin-btn:hover {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
         }
 
         .mobile-menu-btn {
@@ -326,8 +261,8 @@
             background: none;
             border: none;
             color: var(--text-primary);
+            font-size: 24px;
             cursor: pointer;
-            padding: 10px;
         }
 
         /* Hero Section */
@@ -335,8 +270,20 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 0 80px;
             position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 245, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.15) 0%, transparent 50%);
         }
 
         .hero-content {
@@ -344,45 +291,21 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .hero-text {
-            animation: slideIn 1s ease-out;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            background: rgba(0, 255, 245, 0.1);
-            border: 1px solid rgba(0, 255, 245, 0.3);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--neon-cyan);
-            margin-bottom: 25px;
-            animation: pulse 2s infinite;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
+        .hero-text h1 {
+            font-size: 56px;
             font-weight: 900;
             line-height: 1.2;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .hero-title span {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
+        .hero-text .subtitle {
+            font-size: 22px;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            line-height: 1.8;
         }
 
         .hero-buttons {
@@ -391,126 +314,71 @@
             flex-wrap: wrap;
         }
 
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 30px;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--neon-cyan), transparent 30%);
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
         .hero-stats {
             display: flex;
             gap: 40px;
             margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid var(--glass-border);
         }
 
         .stat-item {
             text-align: center;
         }
 
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            background: var(--gradient-neon);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .stat-label {
-            font-size: 0.9rem;
             color: var(--text-secondary);
-        }
-
-        .hero-visual {
-            position: relative;
-            animation: slideUp 1s ease-out 0.3s both;
-        }
-
-        .hero-image-container {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            background: var(--dark-card);
-        }
-
-        .hero-image {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .hero-image-container:hover .hero-image {
-            transform: scale(1.05);
-        }
-
-        .hero-image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 30px;
-            background: linear-gradient(to top, rgba(10, 10, 15, 0.95), transparent);
-        }
-
-        .hero-image-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: rgba(255, 0, 255, 0.2);
-            border: 1px solid var(--neon-purple);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--neon-purple);
-        }
-
-        .floating-card {
-            position: absolute;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 15px 20px;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .floating-card-1 {
-            top: 20%;
-            right: -30px;
-            animation-delay: 0s;
-        }
-
-        .floating-card-2 {
-            bottom: 20%;
-            left: -30px;
-            animation-delay: 1s;
-        }
-
-        .floating-card-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .floating-card-text {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .floating-card-value {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-size: 14px;
         }
 
         /* Gallery Section */
-        .section {
-            padding: 100px 0;
+        .gallery-section {
+            padding: 120px 0;
             position: relative;
-            z-index: 1;
         }
 
         .section-header {
@@ -518,74 +386,60 @@
             margin-bottom: 60px;
         }
 
-        .section-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            background: rgba(255, 0, 255, 0.1);
-            border: 1px solid rgba(255, 0, 255, 0.3);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--neon-purple);
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 900;
             margin-bottom: 15px;
         }
 
-        .section-title span {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
+        .section-header p {
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 18px;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .gallery-item {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            background: var(--dark-card);
-            border: 1px solid var(--glass-border);
             cursor: pointer;
+            aspect-ratio: 4/3;
+            background: var(--dark-card);
             transition: all 0.4s ease;
-            animation: fadeIn 0.5s ease-out both;
         }
 
-        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
-        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
-        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
-        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
-        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
-        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
-        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
-        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: var(--gradient-neon);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
 
         .gallery-item:hover {
             transform: translateY(-10px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 20px 40px rgba(0, 255, 245, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
         .gallery-item img {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
@@ -596,31 +450,27 @@
 
         .gallery-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(10, 10, 15, 0.9), transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
             display: flex;
             align-items: flex-end;
-            padding: 20px;
+            padding: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
 
-        .gallery-info h4 {
-            font-size: 1rem;
-            font-weight: 600;
+        .gallery-overlay-content h4 {
+            font-size: 18px;
             margin-bottom: 5px;
         }
 
-        .gallery-info p {
-            font-size: 0.85rem;
+        .gallery-overlay-content span {
             color: var(--neon-cyan);
+            font-size: 14px;
         }
 
         .gallery-zoom {
@@ -630,13 +480,11 @@
             transform: translate(-50%, -50%) scale(0);
             width: 60px;
             height: 60px;
-            background: rgba(0, 255, 245, 0.2);
-            border: 2px solid var(--neon-cyan);
+            background: var(--gradient-neon);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--neon-cyan);
             transition: transform 0.3s ease;
         }
 
@@ -644,79 +492,23 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
-
-        .lightbox.active {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid var(--neon-cyan);
-            box-shadow: 0 0 60px rgba(0, 255, 245, 0.3);
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 80vh;
-            display: block;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(255, 0, 110, 0.2);
-            border-color: var(--neon-pink);
-            color: var(--neon-pink);
-        }
-
         /* Features Section */
+        .features-section {
+            padding: 120px 0;
+            background: var(--dark-card);
+        }
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
         .feature-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
             padding: 40px;
-            text-align: center;
+            border-radius: 25px;
+            background: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -729,7 +521,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            background: var(--gradient-neon);
             transform: scaleX(0);
             transition: transform 0.4s ease;
         }
@@ -740,116 +532,109 @@
 
         .feature-card:hover {
             transform: translateY(-10px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 20px 40px rgba(0, 255, 245, 0.1);
+            border-color: rgba(0, 255, 245, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, rgba(0, 255, 245, 0.1), rgba(255, 0, 255, 0.1));
-            border: 1px solid rgba(0, 255, 245, 0.3);
             border-radius: 20px;
+            background: linear-gradient(135deg, rgba(0, 255, 245, 0.1), rgba(255, 0, 255, 0.1));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--neon-cyan);
-            transition: all 0.4s ease;
+            font-size: 36px;
+            margin-bottom: 25px;
         }
 
-        .feature-card:hover .feature-icon {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            color: var(--dark-bg);
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 700;
+        .feature-card h3 {
+            font-size: 22px;
             margin-bottom: 15px;
         }
 
-        .feature-desc {
+        .feature-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
             line-height: 1.8;
         }
 
         /* Pricing Section */
-        .pricing-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--glass-border);
-            border-radius: 32px;
-            padding: 50px;
-            max-width: 600px;
+        .pricing-section {
+            padding: 120px 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .pricing-card {
+            padding: 50px;
+            border-radius: 30px;
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
-            overflow: hidden;
-            animation: borderGlow 3s infinite;
+            transition: all 0.4s ease;
         }
 
-        .pricing-card::before {
-            content: '';
+        .pricing-card.featured {
+            border: 2px solid var(--neon-cyan);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'پرفروش‌ترین';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, var(--neon-cyan), transparent 30%);
-            animation: rotate 4s linear infinite;
-            opacity: 0.1;
+            top: -15px;
+            right: 30px;
+            background: var(--gradient-neon);
+            color: var(--dark-bg);
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
         }
 
         .pricing-header {
             text-align: center;
-            margin-bottom: 40px;
-            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .pricing-popular {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--dark-bg);
-            margin-bottom: 20px;
-        }
-
-        .pricing-name {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .pricing-header h3 {
+            font-size: 26px;
             margin-bottom: 10px;
         }
 
-        .pricing-price {
-            font-size: 3.5rem;
+        .pricing-header .price {
+            font-size: 48px;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            background: var(--gradient-neon);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .pricing-price span {
-            font-size: 1.2rem;
-            font-weight: 500;
+        .pricing-header .price span {
+            font-size: 18px;
+            -webkit-text-fill-color: var(--text-secondary);
         }
 
         .pricing-features {
             list-style: none;
-            margin-bottom: 40px;
-            position: relative;
+            margin-bottom: 30px;
         }
 
         .pricing-features li {
@@ -857,423 +642,497 @@
             align-items: center;
             gap: 15px;
             padding: 15px 0;
-            border-bottom: 1px solid var(--glass-border);
-            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-features i {
+        .pricing-features li::before {
+            content: '✓';
             color: var(--neon-cyan);
+            font-weight: bold;
         }
 
-        .pricing-cta {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-        }
-
-        /* Badges Grid */
-        .badges-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .badge-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .badge-item:hover {
-            border-color: var(--neon-cyan);
-            transform: translateY(-3px);
-        }
-
-        .badge-item i {
-            color: var(--neon-cyan);
+        .pricing-card .btn {
+            width: 100%;
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, rgba(0, 255, 245, 0.05), rgba(255, 0, 255, 0.05));
-            border: 1px solid var(--glass-border);
-            border-radius: 40px;
-            padding: 80px 60px;
-            text-align: center;
+            padding: 120px 0;
             position: relative;
             overflow: hidden;
         }
 
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300fff5' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
+        .cta-content {
+            text-align: center;
             position: relative;
+            z-index: 1;
         }
 
-        .cta-subtitle {
-            font-size: 1.1rem;
+        .cta-content h2 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 20px;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            position: relative;
         }
 
         .cta-buttons {
             display: flex;
-            justify-content: center;
             gap: 20px;
+            justify-content: center;
             flex-wrap: wrap;
-            position: relative;
+        }
+
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(0, 255, 245, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 70% 50%, rgba(255, 0, 255, 0.2) 0%, transparent 40%);
         }
 
         /* Footer */
         .footer {
+            padding: 80px 0 30px;
             background: var(--dark-card);
-            border-top: 1px solid var(--glass-border);
-            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
+            gap: 60px;
+            margin-bottom: 60px;
         }
 
-        .footer-brand {
-            max-width: 300px;
-        }
-
-        .footer-brand .logo {
+        .footer-brand h3 {
+            font-size: 32px;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
         }
 
-        .footer-desc {
+        .footer-brand p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
             margin-bottom: 25px;
         }
 
-        .footer-social {
+        .social-links {
             display: flex;
             gap: 15px;
         }
 
-        .footer-social a {
-            width: 45px;
-            height: 45px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: var(--dark-bg);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 20px;
             transition: all 0.3s ease;
         }
 
-        .footer-social a:hover {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+        .social-links a:hover {
+            background: var(--gradient-neon);
             color: var(--dark-bg);
-            border-color: transparent;
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 245, 0.3);
         }
 
-        .footer-title {
-            font-size: 1.1rem;
-            font-weight: 700;
+        .footer-links h4 {
+            font-size: 18px;
             margin-bottom: 25px;
             color: var(--text-primary);
         }
 
-        .footer-links {
+        .footer-links ul {
             list-style: none;
         }
 
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
             color: var(--neon-cyan);
-            transform: translateX(-5px);
         }
 
         .footer-bottom {
+            text-align: center;
             padding-top: 30px;
-            border-top: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-secondary);
-            font-size: 0.9rem;
         }
 
-        .footer-copyright span {
-            color: var(--neon-cyan);
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        /* Sticky Mobile CTA */
-        .mobile-cta {
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0, 255, 245, 0.3);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-neon);
+            border: none;
+            border-radius: 50%;
+            color: var(--dark-bg);
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--dark-glass);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gradient-neon);
+            color: var(--dark-bg);
+        }
+
+        .lightbox-prev { left: 30px; }
+        .lightbox-next { right: 30px; }
+
+        /* Sticky CTA Mobile */
+        .sticky-cta {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             padding: 15px 20px;
-            background: rgba(10, 10, 15, 0.95);
+            background: var(--dark-glass);
             backdrop-filter: blur(20px);
-            border-top: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 999;
             display: none;
         }
 
-        .mobile-cta .btn {
+        .sticky-cta .btn {
             width: 100%;
+            padding: 15px;
         }
 
         /* Admin Panel Styles */
-        .admin-page {
+        .admin-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 20000;
             display: none;
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        .admin-page.active {
-            display: block;
-        }
-
-        .login-container {
-            max-width: 450px;
-            margin: 100px auto;
-            animation: slideUp 0.5s ease;
-        }
-
-        .login-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
-            padding: 50px;
-            text-align: center;
-        }
-
-        .login-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            border-radius: 24px;
-            display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            color: var(--dark-bg);
         }
 
-        .login-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+        .admin-overlay.active {
+            display: flex;
         }
 
-        .login-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 35px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-            text-align: right;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        .form-input {
+        .admin-login {
             width: 100%;
-            padding: 16px 20px;
-            background: var(--dark-secondary);
-            border: 2px solid var(--glass-border);
-            border-radius: 14px;
+            max-width: 450px;
+            padding: 50px;
+            border-radius: 30px;
+            background: var(--dark-glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .admin-login h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .admin-login p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .admin-login .input-group {
+            margin-bottom: 20px;
+        }
+
+        .admin-login input {
+            width: 100%;
+            padding: 18px 25px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: var(--dark-bg);
             color: var(--text-primary);
+            font-size: 16px;
             font-family: inherit;
-            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 8px;
             transition: all 0.3s ease;
         }
 
-        .form-input:focus {
+        .admin-login input:focus {
             outline: none;
             border-color: var(--neon-cyan);
             box-shadow: 0 0 20px rgba(0, 255, 245, 0.2);
         }
 
-        .form-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .error-message {
-            background: rgba(255, 0, 110, 0.1);
-            border: 1px solid var(--neon-pink);
-            border-radius: 12px;
-            padding: 15px;
-            color: var(--neon-pink);
-            margin-bottom: 20px;
+        .admin-login .error-msg {
+            color: #ff4757;
+            font-size: 14px;
+            margin-top: 10px;
             display: none;
         }
 
-        .error-message.show {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideUp 0.3s ease;
+        .admin-login .error-msg.show {
+            display: block;
+            animation: shake 0.5s ease-out;
         }
 
-        /* Dashboard */
-        .dashboard-header {
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .admin-close {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--dark-glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .admin-close:hover {
+            background: #ff4757;
+        }
+
+        /* Admin Dashboard */
+        .admin-dashboard {
+            position: fixed;
+            inset: 0;
+            background: var(--dark-bg);
+            z-index: 20000;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .admin-dashboard.active {
+            display: block;
+        }
+
+        .admin-header {
+            position: sticky;
+            top: 0;
+            background: var(--dark-glass);
+            backdrop-filter: blur(20px);
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
         }
 
-        .dashboard-title {
-            font-size: 2rem;
-            font-weight: 800;
+        .admin-header h1 {
+            font-size: 24px;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .dashboard-grid {
+        .admin-header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .admin-content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .admin-stats {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
         }
 
         .stat-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
             padding: 30px;
+            border-radius: 20px;
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 20px;
             transition: all 0.3s ease;
         }
 
         .stat-card:hover {
-            border-color: var(--neon-cyan);
             transform: translateY(-5px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .stat-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .stat-card-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(0, 255, 245, 0.1), rgba(255, 0, 255, 0.1));
-            border-radius: 14px;
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(0, 255, 245, 0.2), rgba(255, 0, 255, 0.2));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--neon-cyan);
+            font-size: 28px;
         }
 
-        .stat-card-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+        .stat-info h3 {
+            font-size: 32px;
+            font-weight: 900;
+            background: var(--gradient-neon);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 5px;
         }
 
-        .stat-card-label {
+        .stat-info p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
         }
 
         .admin-section {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 35px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
-        .admin-section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 25px;
+        .admin-section-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
+            margin-bottom: 25px;
         }
 
-        .admin-section-title i {
-            color: var(--neon-cyan);
+        .admin-section-header h2 {
+            font-size: 22px;
         }
 
-        .admin-grid {
+        .admin-card {
+            padding: 30px;
+            border-radius: 20px;
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
 
         .image-upload-area {
-            border: 2px dashed var(--glass-border);
-            border-radius: 16px;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
             padding: 40px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .image-upload-area:hover {
@@ -1281,143 +1140,149 @@
             background: rgba(0, 255, 245, 0.05);
         }
 
-        .image-upload-area i {
-            font-size: 3rem;
-            color: var(--neon-cyan);
-            margin-bottom: 15px;
-            display: block;
+        .image-upload-area.has-image {
+            padding: 0;
         }
 
-        .image-preview {
+        .image-upload-area img {
             width: 100%;
-            height: 200px;
-            border-radius: 16px;
+            height: 300px;
             object-fit: cover;
-            margin-top: 20px;
-            border: 1px solid var(--glass-border);
+            border-radius: 18px;
         }
 
-        .gallery-manage {
+        .image-upload-area .upload-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .image-upload-area p {
+            color: var(--text-secondary);
+        }
+
+        .image-upload-area input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .gallery-admin-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
         }
 
-        .gallery-manage-item {
+        .gallery-admin-item {
             position: relative;
-            border-radius: 16px;
+            aspect-ratio: 4/3;
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
+            background: var(--dark-bg);
         }
 
-        .gallery-manage-item img {
+        .gallery-admin-item img {
             width: 100%;
-            height: 150px;
+            height: 100%;
             object-fit: cover;
         }
 
-        .gallery-manage-actions {
+        .gallery-admin-item .delete-btn {
             position: absolute;
             top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .gallery-manage-btn {
+            left: 10px;
             width: 35px;
             height: 35px;
-            background: rgba(10, 10, 15, 0.8);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            color: var(--text-primary);
+            background: #ff4757;
+            border: none;
+            border-radius: 50%;
+            color: white;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            opacity: 0;
             transition: all 0.3s ease;
         }
 
-        .gallery-manage-btn:hover {
-            background: var(--neon-pink);
-            border-color: var(--neon-pink);
+        .gallery-admin-item:hover .delete-btn {
+            opacity: 1;
         }
 
-        .gallery-manage-btn.move {
-            cursor: grab;
-        }
-
-        .gallery-manage-btn.move:hover {
-            background: var(--neon-cyan);
-            border-color: var(--neon-cyan);
-        }
-
-        textarea.form-input {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .save-indicator {
-            display: inline-flex;
+        .add-gallery-item {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: rgba(0, 255, 245, 0.1);
-            border: 1px solid var(--neon-cyan);
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .add-gallery-item:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 255, 245, 0.05);
+        }
+
+        .add-gallery-item .plus-icon {
+            font-size: 36px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .add-gallery-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .add-gallery-item input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .success-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #00c853, #00e676);
+            color: white;
             border-radius: 50px;
-            color: var(--neon-cyan);
-            font-size: 0.9rem;
-            animation: fadeIn 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 200, 83, 0.3);
+            z-index: 30000;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .success-toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .dashboard-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .gallery-manage {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
             .hero-buttons {
                 justify-content: center;
             }
-            
+
             .hero-stats {
                 justify-content: center;
             }
-            
-            .hero-visual {
-                max-width: 600px;
-                margin: 0 auto;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
+
             .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .admin-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -1425,786 +1290,466 @@
             .nav-links {
                 display: none;
             }
-            
+
             .mobile-menu-btn {
-                display: flex;
+                display: block;
             }
-            
-            .hero {
-                padding: 100px 0 60px;
+
+            .hero-text h1 {
+                font-size: 32px;
             }
-            
-            .hero-title {
-                font-size: 2.2rem;
+
+            .hero-text .subtitle {
+                font-size: 18px;
             }
-            
-            .hero-image {
-                height: 350px;
+
+            .section-header h2 {
+                font-size: 32px;
             }
-            
-            .floating-card {
-                display: none;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .features-grid {
+
+            .pricing-cards {
                 grid-template-columns: 1fr;
             }
-            
-            .section {
-                padding: 60px 0;
+
+            .pricing-card.featured {
+                transform: none;
             }
-            
-            .section-title {
-                font-size: 2rem;
+
+            .cta-content h2 {
+                font-size: 32px;
             }
-            
-            .pricing-card {
-                padding: 35px 25px;
-            }
-            
-            .cta-section {
-                padding: 50px 30px;
-                border-radius: 24px;
-            }
-            
-            .cta-title {
-                font-size: 1.8rem;
-            }
-            
+
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
-            .footer-brand {
-                max-width: 100%;
-            }
-            
-            .footer-social {
+
+            .social-links {
                 justify-content: center;
             }
-            
-            .footer-links a {
-                justify-content: center;
-            }
-            
-            .footer-bottom {
-                justify-content: center;
-                text-align: center;
-            }
-            
-            .mobile-cta {
+
+            .sticky-cta {
                 display: block;
             }
-            
-            .dashboard-grid {
+
+            .admin-content {
+                padding: 20px;
+            }
+
+            .admin-header {
+                padding: 15px 20px;
+            }
+
+            .form-row {
                 grid-template-columns: 1fr;
             }
-            
-            .gallery-manage {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .dashboard-header {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
         }
 
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .btn-large {
-                padding: 15px 30px;
-                font-size: 1rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .gallery-manage {
-                grid-template-columns: 1fr;
-            }
-            
-            .login-card {
-                padding: 35px 25px;
-            }
-        }
-
-        /* Page transitions */
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
+        /* Loader */
+        .page-loader {
             position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 350px;
-            height: 100vh;
-            background: var(--dark-card);
-            border-left: 1px solid var(--glass-border);
-            z-index: 1001;
-            padding: 30px;
-            transition: right 0.3s ease;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: none;
-        }
-
-        .mobile-menu-overlay.active {
-            display: block;
-        }
-
-        .mobile-menu-header {
+            inset: 0;
+            background: var(--dark-bg);
+            z-index: 50000;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            justify-content: center;
+            transition: opacity 0.5s ease;
         }
 
-        .mobile-menu-close {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            cursor: pointer;
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        .mobile-nav-links {
-            list-style: none;
+        .loader-content {
+            text-align: center;
         }
 
-        .mobile-nav-links li {
-            margin-bottom: 20px;
+        .loader-logo {
+            font-size: 48px;
+            font-weight: 900;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
         }
 
-        .mobile-nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loader-bar::after {
+            content: '';
             display: block;
-            padding: 10px 0;
+            width: 50%;
+            height: 100%;
+            background: var(--gradient-neon);
+            animation: loading 1s ease-in-out infinite;
         }
 
-        .mobile-nav-links a:hover {
-            color: var(--neon-cyan);
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
         }
 
-        .mobile-menu-cta {
-            margin-top: 40px;
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
         }
 
-        .mobile-menu-cta .btn {
-            width: 100%;
-            margin-bottom: 15px;
+        .empty-state .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
         }
     </style>
 </head>
 <body>
-    <!-- Background Effects -->
-    <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-    <div class="bg-glow bg-glow-3"></div>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-header">
-            <a href="#" class="logo">
-                <div class="logo-icon">T</div>
-                <span class="logo-text">TempliVibe</span>
-            </a>
-            <button class="mobile-menu-close" onclick="closeMobileMenu()">
-                <i data-lucide="x" style="width: 24px; height: 24px;"></i>
-            </button>
-        </div>
-        <ul class="mobile-nav-links">
-            <li><a href="#home" onclick="closeMobileMenu()">صفحه اصلی</a></li>
-            <li><a href="#gallery" onclick="closeMobileMenu()">گالری قالب‌ها</a></li>
-            <li><a href="#features" onclick="closeMobileMenu()">ویژگی‌ها</a></li>
-            <li><a href="#pricing" onclick="closeMobileMenu()">قیمت</a></li>
-            <li><a href="#contact" onclick="closeMobileMenu()">تماس</a></li>
-        </ul>
-        <div class="mobile-menu-cta">
-            <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary">
-                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
-                خرید از تلگرام
-            </a>
-            <button class="btn btn-glass" onclick="showAdminLogin(); closeMobileMenu();">
-                <i data-lucide="lock" style="width: 18px; height: 18px;"></i>
-                پنل مدیریت
-            </button>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">TempliVibe</div>
+            <div class="loader-bar"></div>
         </div>
     </div>
 
-    <!-- Main Page -->
-    <div id="mainPage" class="page active">
-        <!-- Navigation -->
-        <nav class="navbar" id="navbar">
-            <div class="nav-container">
-                <a href="#home" class="logo">
-                    <div class="logo-icon">T</div>
-                    <span class="logo-text">TempliVibe</span>
-                </a>
-
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="#" class="logo">TempliVibe</a>
                 <ul class="nav-links">
-                    <li><a href="#home">صفحه اصلی</a></li>
-                    <li><a href="#gallery">گالری قالب‌ها</a></li>
+                    <li><a href="#home">خانه</a></li>
+                    <li><a href="#gallery">گالری</a></li>
                     <li><a href="#features">ویژگی‌ها</a></li>
                     <li><a href="#pricing">قیمت</a></li>
                     <li><a href="#contact">تماس</a></li>
                 </ul>
-
-                <div class="nav-buttons">
-                    <button class="btn btn-glass" onclick="showAdminLogin()">
-                        <i data-lucide="lock" style="width: 16px; height: 16px;"></i>
-                        مدیریت
-                    </button>
-                    <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary">
-                        <i data-lucide="send" style="width: 16px; height: 16px;"></i>
-                        خرید از تلگرام
-                    </a>
-                    <button class="mobile-menu-btn" onclick="openMobileMenu()">
-                        <i data-lucide="menu" style="width: 24px; height: 24px;"></i>
-                    </button>
-                </div>
+                <button class="nav-admin-btn" onclick="openAdminLogin()">🔐 پنل مدیریت</button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <div class="hero-badge">
-                            <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
-                            قالب‌های حرفه‌ای و آماده ویرایش
-                        </div>
-                        <h1 class="hero-title" id="heroTitle">
-                            تمپلی‌وایب
-                            <br>
-                            <span>فروش قالب‌های گرافیکی حرفه‌ای</span>
-                        </h1>
-                        <p class="hero-subtitle" id="heroSubtitle">
-                            قالب‌های آماده برای ویرایش سریع و حرفه‌ای. با استفاده از قالب‌های ما، زمان طراحی خود را به حداقل برسانید و نتیجه‌ای شگفت‌انگیز بگیرید.
-                        </p>
-                        <div class="hero-buttons">
-                            <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary btn-large" id="heroBtn">
-                                <i data-lucide="send" style="width: 20px; height: 20px;"></i>
-                                خرید از تلگرام
-                            </a>
-                            <a href="#gallery" class="btn btn-secondary btn-large">
-                                <i data-lucide="image" style="width: 20px; height: 20px;"></i>
-                                مشاهده گالری
-                            </a>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <div class="stat-value" id="statTemplates">۱۵۰+</div>
-                                <div class="stat-label">قالب آماده</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value" id="statCustomers">۵۰۰+</div>
-                                <div class="stat-label">مشتری راضی</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value" id="statDownloads">۲۰۰۰+</div>
-                                <div class="stat-label">دانلود موفق</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="hero-image-container">
-                            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop" 
-                                 alt="Hero Template" 
-                                 class="hero-image"
-                                 id="heroImage"
-                                 loading="lazy">
-                            <div class="hero-image-overlay">
-                                <div class="hero-image-badge">
-                                    <i data-lucide="star" style="width: 16px; height: 16px;"></i>
-                                    قالب پرفروش ماه
-                                </div>
-                            </div>
-                        </div>
-                        <div class="floating-card floating-card-1">
-                            <div class="floating-card-icon">
-                                <i data-lucide="palette" style="width: 20px; height: 20px;"></i>
-                            </div>
-                            <div class="floating-card-text">فرمت‌های موجود</div>
-                            <div class="floating-card-value">PSD, AI, Canva</div>
-                        </div>
-                        <div class="floating-card floating-card-2">
-                            <div class="floating-card-icon">
-                                <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
-                            </div>
-                            <div class="floating-card-text">ویرایش آسان</div>
-                            <div class="floating-card-value">۱۰۰٪ قابل ویرایش</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section class="section" id="gallery">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">
-                        <i data-lucide="layout-grid" style="width: 16px; height: 16px;"></i>
-                        نمونه کارها
-                    </div>
-                    <h2 class="section-title">
-                        گالری <span>قالب‌های حرفه‌ای</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        مجموعه‌ای از بهترین قالب‌های طراحی شده توسط تیم تمپلی‌وایب
-                    </p>
-                </div>
-
-                <div class="gallery-grid" id="galleryGrid">
-                    <!-- Gallery items will be loaded dynamically -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="section" id="features">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">
-                        <i data-lucide="award" style="width: 16px; height: 16px;"></i>
-                        چرا TempliVibe؟
-                    </div>
-                    <h2 class="section-title">
-                        مزایای <span>انتخاب ما</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        دلایلی که ما را به بهترین انتخاب برای نیازهای گرافیکی شما تبدیل می‌کند
-                    </p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i data-lucide="edit-3" style="width: 32px; height: 32px;"></i>
-                        </div>
-                        <h3 class="feature-title">ویرایش آسان</h3>
-                        <p class="feature-desc">
-                            تمامی قالب‌ها کاملاً قابل ویرایش هستند و می‌توانید به راحتی متن، رنگ و تصاویر را تغییر دهید.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i data-lucide="crown" style="width: 32px; height: 32px;"></i>
-                        </div>
-                        <h3 class="feature-title">کیفیت پریمیوم</h3>
-                        <p class="feature-desc">
-                            طراحی‌های منحصر به فرد با کیفیت بالا که توسط طراحان حرفه‌ای ایجاد شده‌اند.
-                        </p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i data-lucide="download" style="width: 32px; height: 32px;"></i>
-                        </div>
-                        <h3 class="feature-title">دانلود فوری</h3>
-                        <p class="feature-desc">
-                            بلافاصله پس از خرید، لینک دانلود قالب‌ها برای شما ارسال می‌شود.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="badges-grid">
-                    <div class="badge-item">
-                        <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
-                        Editable
-                    </div>
-                    <div class="badge-item">
-                        <i data-lucide="star" style="width: 20px; height: 20px;"></i>
-                        Premium
-                    </div>
-                    <div class="badge-item">
-                        <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
-                        High Quality
-                    </div>
-                    <div class="badge-item">
-                        <i data-lucide="refresh-cw" style="width: 20px; height: 20px;"></i>
-                        آپدیت رایگان
-                    </div>
-                    <div class="badge-item">
-                        <i data-lucide="headphones" style="width: 20px; height: 20px;"></i>
-                        پشتیبانی ۲۴/۷
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Section -->
-        <section class="section" id="pricing">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-badge">
-                        <i data-lucide="tag" style="width: 16px; height: 16px;"></i>
-                        قیمت‌گذاری
-                    </div>
-                    <h2 class="section-title">
-                        پکیج <span>ویژه قالب‌ها</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        با خرید پکیج کامل، به تمام قالب‌ها با بهترین قیمت دسترسی پیدا کنید
-                    </p>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <div class="pricing-popular">
-                            <i data-lucide="flame" style="width: 16px; height: 16px;"></i>
-                            پرفروش‌ترین
-                        </div>
-                        <h3 class="pricing-name" id="pricingName">پکیج حرفه‌ای</h3>
-                        <div class="pricing-price">
-                            <span id="pricingPrice">۱۴۹,۰۰۰</span>
-                            <span>تومان</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>
-                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
-                            <span id="featureCount">بیش از ۱۵۰ قالب آماده</span>
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
-                            فرمت‌های PSD, AI و Canva
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
-                            آپدیت‌های رایگان مادام‌العمر
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
-                            پشتیبانی ۲۴ ساعته
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width: 20px; height: 20px;"></i>
-                            دسترسی به قالب‌های جدید
-                        </li>
-                    </ul>
-                    <div class="pricing-cta">
-                        <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary btn-large" id="pricingTelegramBtn">
-                            <i data-lucide="send" style="width: 20px; height: 20px;"></i>
-                            خرید از تلگرام
-                        </a>
-                        <button class="btn btn-secondary btn-large">
-                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
-                            سوال دارید؟ پیام دهید
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section" id="contact">
-            <div class="container">
-                <div class="cta-section">
-                    <h2 class="cta-title">
-                        همین الان شروع کنید! 🚀
-                    </h2>
-                    <p class="cta-subtitle">
-                        با خرید قالب‌های حرفه‌ای ما، کسب‌وکار خود را یک قدم جلوتر ببرید
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary btn-large" id="ctaTelegramBtn">
-                            <i data-lucide="send" style="width: 20px; height: 20px;"></i>
-                            خرید از تلگرام
-                        </a>
-                        <a href="#gallery" class="btn btn-glass btn-large">
-                            <i data-lucide="eye" style="width: 20px; height: 20px;"></i>
-                            مشاهده نمونه‌ها
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-brand">
-                        <a href="#" class="logo">
-                            <div class="logo-icon">T</div>
-                            <span class="logo-text">TempliVibe</span>
-                        </a>
-                        <p class="footer-desc">
-                            تمپلی‌وایب، مرجع فروش قالب‌های گرافیکی حرفه‌ای. ما به شما کمک می‌کنیم تا با کمترین زمان، بهترین طراحی‌ها را داشته باشید.
-                        </p>
-                        <div class="footer-social">
-                            <a href="https://t.me/TempliVibe" target="_blank" title="Telegram">
-                                <i data-lucide="send" style="width: 20px; height: 20px;"></i>
-                            </a>
-                            <a href="#" target="_blank" title="Instagram">
-                                <i data-lucide="instagram" style="width: 20px; height: 20px;"></i>
-                            </a>
-                            <a href="#" target="_blank" title="Twitter">
-                                <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 class="footer-title">لینک‌های سریع</h4>
-                        <ul class="footer-links">
-                            <li><a href="#home">صفحه اصلی</a></li>
-                            <li><a href="#gallery">گالری</a></li>
-                            <li><a href="#features">ویژگی‌ها</a></li>
-                            <li><a href="#pricing">قیمت</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="footer-title">خدمات</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">قالب‌های Canva</a></li>
-                            <li><a href="#">قالب‌های PSD</a></li>
-                            <li><a href="#">قالب‌های Illustrator</a></li>
-                            <li><a href="#">طراحی سفارشی</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="footer-title">تماس با ما</h4>
-                        <ul class="footer-links">
-                            <li>
-                                <a href="https://t.me/TempliVibe" target="_blank">
-                                    <i data-lucide="send" style="width: 16px; height: 16px;"></i>
-                                    @TempliVibe
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:info@templivibe.com">
-                                    <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
-                                    info@templivibe.com
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="footer-bottom">
-                    <p class="footer-copyright">
-                        © ۱۴۰۳ <span>TempliVibe</span>. تمامی حقوق محفوظ است.
-                    </p>
-                    <div class="nav-buttons">
-                        <button class="btn btn-glass" onclick="showAdminLogin()" style="padding: 8px 16px; font-size: 0.85rem;">
-                            <i data-lucide="settings" style="width: 14px; height: 14px;"></i>
-                            ورود به پنل
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Sticky Mobile CTA -->
-        <div class="mobile-cta">
-            <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-primary">
-                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
-                خرید از تلگرام
-            </a>
         </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero bg-grid" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text animate-slideUp">
+                    <h1 id="heroTitle">تمپلی وایب<br><span class="neon-text">فروش قالب‌های گرافیکی حرفه‌ای</span></h1>
+                    <p class="subtitle" id="heroSubtitle">قالب‌های آماده برای ویرایش سریع و حرفه‌ای در Canva، Photoshop و Illustrator</p>
+                    <div class="hero-buttons">
+                        <a href="#pricing" class="btn btn-primary">
+                            🛒 مشاهده قالب‌ها
+                        </a>
+                        <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-telegram" id="telegramLink">
+                            📱 خرید از تلگرام
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" id="statTemplates">+500</div>
+                            <div class="stat-label">قالب آماده</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="statCustomers">+2000</div>
+                            <div class="stat-label">مشتری راضی</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="statDownloads">+10000</div>
+                            <div class="stat-label">دانلود موفق</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image animate-float">
+                    <div class="hero-image-wrapper animate-glow">
+                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop" alt="قالب گرافیکی" id="heroImage">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎨 <span class="neon-text">گالری نمونه قالب‌ها</span></h2>
+                <p>نگاهی به بهترین قالب‌های گرافیکی ما بیندازید</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>✨ <span class="neon-text">چرا TempliVibe؟</span></h2>
+                <p>دلایلی که ما را از بقیه متمایز می‌کند</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>ویرایش سریع و آسان</h3>
+                    <p>تمام قالب‌ها به صورت لایه‌باز و قابل ویرایش در Canva، Photoshop و Illustrator طراحی شده‌اند.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>کیفیت Premium</h3>
+                    <p>طراحی‌های حرفه‌ای با کیفیت بالا که توسط دیزاینرهای باتجربه ایجاد شده‌اند.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>پشتیبانی ۲۴/۷</h3>
+                    <p>تیم پشتیبانی ما همیشه آماده پاسخگویی به سوالات شما در تلگرام است.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>آپدیت رایگان</h3>
+                    <p>با هر خرید، به تمام آپدیت‌های آینده قالب‌ها دسترسی رایگان خواهید داشت.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>فرمت‌های متنوع</h3>
+                    <p>PSD, AI, Canva, PDF و PNG - هر فرمتی که نیاز دارید را در اختیار دارید.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>قیمت مناسب</h3>
+                    <p>بهترین قالب‌ها با مقرون به صرفه‌ترین قیمت‌ها را از ما دریافت کنید.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>💰 <span class="neon-text">پکیج‌های قیمت</span></h2>
+                <p>پکیج مناسب خود را انتخاب کنید</p>
+            </div>
+            <div class="pricing-cards" id="pricingCards">
+                <!-- Pricing cards will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>🚀 همین الان شروع کنید!</h2>
+                <p>به هزاران مشتری راضی ما بپیوندید و قالب‌های حرفه‌ای دریافت کنید</p>
+                <div class="cta-buttons">
+                    <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-telegram">
+                        📱 خرید از تلگرام
+                    </a>
+                    <a href="#gallery" class="btn btn-secondary">
+                        👀 مشاهده نمونه‌ها
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>TempliVibe</h3>
+                    <p>مرجع فروش قالب‌های گرافیکی حرفه‌ای برای Canva، Photoshop و Illustrator</p>
+                    <div class="social-links">
+                        <a href="https://t.me/TempliVibe" target="_blank">📱</a>
+                        <a href="#" target="_blank">📷</a>
+                        <a href="#" target="_blank">🌐</a>
+                        <a href="#" target="_blank">📧</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>لینک‌های سریع</h4>
+                    <ul>
+                        <li><a href="#home">خانه</a></li>
+                        <li><a href="#gallery">گالری</a></li>
+                        <li><a href="#features">ویژگی‌ها</a></li>
+                        <li><a href="#pricing">قیمت‌ها</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>دسته‌بندی‌ها</h4>
+                    <ul>
+                        <li><a href="#">قالب پوستر</a></li>
+                        <li><a href="#">قالب لوگو</a></li>
+                        <li><a href="#">قالب اینستاگرام</a></li>
+                        <li><a href="#">قالب کارت ویزیت</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>پشتیبانی</h4>
+                    <ul>
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">راهنمای خرید</a></li>
+                        <li><a href="https://t.me/TempliVibe">تماس با ما</a></li>
+                        <li><a href="#">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 TempliVibe - تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA Mobile -->
+    <div class="sticky-cta">
+        <a href="https://t.me/TempliVibe" target="_blank" class="btn btn-telegram">
+            📱 خرید از تلگرام
+        </a>
     </div>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()">
-            <i data-lucide="x" style="width: 24px; height: 24px;"></i>
-        </button>
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">❮</button>
         <div class="lightbox-content">
-            <img src="" alt="Preview" id="lightboxImage">
+            <img src="" alt="تصویر بزرگ" id="lightboxImage">
         </div>
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">❯</button>
     </div>
 
-    <!-- Admin Login Page -->
-    <div id="adminLoginPage" class="admin-page">
-        <div class="login-container">
-            <div class="login-card">
-                <div class="login-icon">
-                    <i data-lucide="shield" style="width: 40px; height: 40px;"></i>
-                </div>
-                <h2 class="login-title">ورود به پنل مدیریت</h2>
-                <p class="login-subtitle">لطفاً رمز عبور را وارد کنید</p>
-                
-                <div class="error-message" id="loginError">
-                    <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
-                    <span>رمز اشتباه است. دوباره تلاش کنید.</span>
-                </div>
-
-                <form onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label class="form-label">رمز عبور</label>
-                        <input type="password" 
-                               class="form-input" 
-                               id="adminPassword" 
-                               placeholder="رمز عبور را وارد کنید"
-                               autocomplete="current-password">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">
-                        <i data-lucide="log-in" style="width: 20px; height: 20px;"></i>
-                        ورود به پنل
-                    </button>
-                </form>
-
-                <div style="margin-top: 25px;">
-                    <button class="btn btn-glass" onclick="showMainPage()" style="width: 100%;">
-                        <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
-                        بازگشت به سایت
-                    </button>
-                </div>
+    <!-- Admin Login Overlay -->
+    <div class="admin-overlay" id="adminOverlay">
+        <button class="admin-close" onclick="closeAdminLogin()">✕</button>
+        <div class="admin-login">
+            <h2>🔐 ورود به پنل مدیریت</h2>
+            <p>رمز عبور را وارد کنید</p>
+            <div class="input-group">
+                <input type="password" id="adminPassword" placeholder="••••••••" maxlength="20" onkeypress="handlePasswordKeypress(event)">
+                <p class="error-msg" id="loginError">رمز اشتباه است. دوباره تلاش کنید.</p>
             </div>
+            <button class="btn btn-primary" onclick="attemptLogin()" style="width: 100%;">ورود</button>
         </div>
     </div>
 
     <!-- Admin Dashboard -->
-    <div id="adminDashboard" class="admin-page">
-        <div class="container">
-            <div class="dashboard-header">
-                <div>
-                    <h1 class="dashboard-title">
-                        <span style="background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">پنل مدیریت</span>
-                    </h1>
-                    <p style="color: var(--text-secondary);">مدیریت محتوای سایت TempliVibe</p>
-                </div>
-                <div style="display: flex; gap: 15px;">
-                    <div class="save-indicator" id="saveIndicator" style="display: none;">
-                        <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
-                        ذخیره شد
-                    </div>
-                    <button class="btn btn-secondary" onclick="showMainPage()">
-                        <i data-lucide="eye" style="width: 18px; height: 18px;"></i>
-                        مشاهده سایت
-                    </button>
-                    <button class="btn btn-glass" onclick="logout()">
-                        <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
-                        خروج
-                    </button>
-                </div>
+    <div class="admin-dashboard" id="adminDashboard">
+        <header class="admin-header">
+            <h1>🎛️ پنل مدیریت TempliVibe</h1>
+            <div class="admin-header-actions">
+                <button class="btn btn-secondary" onclick="saveAllData()">💾 ذخیره تغییرات</button>
+                <button class="btn btn-primary" onclick="previewSite()">👁️ پیش‌نمایش</button>
+                <button class="nav-admin-btn" onclick="logoutAdmin()">🚪 خروج</button>
             </div>
-
+        </header>
+        <div class="admin-content">
             <!-- Stats -->
-            <div class="dashboard-grid">
+            <div class="admin-stats">
                 <div class="stat-card">
-                    <div class="stat-card-header">
-                        <div class="stat-card-icon">
-                            <i data-lucide="package" style="width: 24px; height: 24px;"></i>
-                        </div>
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h3 id="adminStatOrders">156</h3>
+                        <p>سفارش‌ها</p>
                     </div>
-                    <div class="stat-card-value" id="adminStatOrders">۱۲۵</div>
-                    <div class="stat-card-label">سفارشات</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-header">
-                        <div class="stat-card-icon">
-                            <i data-lucide="download" style="width: 24px; height: 24px;"></i>
-                        </div>
+                    <div class="stat-icon">⬇️</div>
+                    <div class="stat-info">
+                        <h3 id="adminStatDownloads">2,340</h3>
+                        <p>دانلودها</p>
                     </div>
-                    <div class="stat-card-value" id="adminStatDownloads">۲,۳۴۵</div>
-                    <div class="stat-card-label">دانلودها</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-header">
-                        <div class="stat-card-icon">
-                            <i data-lucide="users" style="width: 24px; height: 24px;"></i>
-                        </div>
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3 id="adminStatVisitors">8,920</h3>
+                        <p>بازدیدکنندگان</p>
                     </div>
-                    <div class="stat-card-value" id="adminStatUsers">۵۸۷</div>
-                    <div class="stat-card-label">کاربران</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-card-header">
-                        <div class="stat-card-icon">
-                            <i data-lucide="trending-up" style="width: 24px; height: 24px;"></i>
-                        </div>
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3 id="adminStatRevenue">۱۲.۵M</h3>
+                        <p>درآمد (تومان)</p>
                     </div>
-                    <div class="stat-card-value" id="adminStatRevenue">۱۸.۵M</div>
-                    <div class="stat-card-label">درآمد (تومان)</div>
                 </div>
             </div>
 
-            <!-- Hero Section Management -->
+            <!-- Hero Section Settings -->
             <div class="admin-section">
-                <h3 class="admin-section-title">
-                    <i data-lucide="layout" style="width: 22px; height: 22px;"></i>
-                    مدیریت بخش Hero
-                </h3>
-                <div class="admin-grid">
-                    <div>
-                        <div class="form-group">
-                            <label class="form-label">عنوان اصلی</label>
-                            <input type="text" class="form-input" id="adminHeroTitle" 
-                                   value="تمپلی‌وایب" onchange="saveSettings()">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">زیرعنوان</label>
-                            <textarea class="form-input" id="adminHeroSubtitle" 
-                                      onchange="saveSettings()">قالب‌های آماده برای ویرایش سریع و حرفه‌ای. با استفاده از قالب‌های ما، زمان طراحی خود را به حداقل برسانید و نتیجه‌ای شگفت‌انگیز بگیرید.</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">لینک تلگرام</label>
-                            <input type="url" class="form-input" id="adminTelegramLink" 
-                                   value="https://t.me/TempliVibe" onchange="saveSettings()">
+                <div class="admin-section-header">
+                    <h2>🏠 تنظیمات بخش اصلی (Hero)</h2>
+                </div>
+                <div class="admin-card">
+                    <div class="form-group">
+                        <label>تصویر اصلی</label>
+                        <div class="image-upload-area" id="heroImageUpload">
+                            <div class="upload-icon">📷</div>
+                            <p>کلیک کنید یا تصویر را بکشید</p>
+                            <input type="file" accept="image/*" onchange="uploadHeroImage(event)">
                         </div>
                     </div>
-                    <div>
+                    <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">تصویر اصلی Hero</label>
-                            <div class="image-upload-area" onclick="document.getElementById('heroImageUpload').click()">
-                                <i data-lucide="upload-cloud"></i>
-                                <p>کلیک کنید یا تصویر را بکشید</p>
-                                <input type="file" id="heroImageUpload" accept="image/*" 
-                                       style="display: none;" onchange="handleHeroImageUpload(event)">
-                            </div>
-                            <img src="" alt="Preview" class="image-preview" id="heroImagePreview" style="display: none;">
+                            <label>عنوان اصلی</label>
+                            <input type="text" id="adminHeroTitle" value="تمپلی وایب" placeholder="عنوان اصلی">
+                        </div>
+                        <div class="form-group">
+                            <label>زیرعنوان</label>
+                            <input type="text" id="adminHeroSubtitle" value="فروش قالب‌های گرافیکی حرفه‌ای" placeholder="زیرعنوان">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>توضیحات</label>
+                        <textarea id="adminHeroDesc" placeholder="توضیحات بخش اصلی">قالب‌های آماده برای ویرایش سریع و حرفه‌ای در Canva، Photoshop و Illustrator</textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>لینک تلگرام</label>
+                            <input type="text" id="adminTelegramLink" value="https://t.me/TempliVibe" placeholder="https://t.me/...">
+                        </div>
+                        <div class="form-group">
+                            <label>تعداد قالب‌ها (آمار)</label>
+                            <input type="text" id="adminStatTemplates" value="+500" placeholder="+500">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>تعداد مشتریان (آمار)</label>
+                            <input type="text" id="adminStatCustomers" value="+2000" placeholder="+2000">
+                        </div>
+                        <div class="form-group">
+                            <label>تعداد دانلود (آمار)</label>
+                            <input type="text" id="adminStatDownloads2" value="+10000" placeholder="+10000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Management -->
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>🖼️ مدیریت گالری</h2>
+                </div>
+                <div class="admin-card">
+                    <div class="gallery-admin-grid" id="galleryAdminGrid">
+                        <!-- Gallery items will be loaded here -->
+                        <div class="gallery-admin-item add-gallery-item">
+                            <div class="plus-icon">+</div>
+                            <p>افزودن تصویر</p>
+                            <input type="file" accept="image/*" onchange="addGalleryImage(event)" multiple>
                         </div>
                     </div>
                 </div>
@@ -2212,431 +1757,498 @@
 
             <!-- Pricing Management -->
             <div class="admin-section">
-                <h3 class="admin-section-title">
-                    <i data-lucide="tag" style="width: 22px; height: 22px;"></i>
-                    مدیریت قیمت‌گذاری
-                </h3>
-                <div class="admin-grid">
-                    <div class="form-group">
-                        <label class="form-label">نام پکیج</label>
-                        <input type="text" class="form-input" id="adminPricingName" 
-                               value="پکیج حرفه‌ای" onchange="saveSettings()">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">قیمت (تومان)</label>
-                        <input type="text" class="form-input" id="adminPricingPrice" 
-                               value="۱۴۹,۰۰۰" onchange="saveSettings()">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">تعداد قالب‌ها</label>
-                        <input type="text" class="form-input" id="adminTemplateCount" 
-                               value="بیش از ۱۵۰ قالب آماده" onchange="saveSettings()">
-                    </div>
+                <div class="admin-section-header">
+                    <h2>💰 مدیریت پکیج‌های قیمت</h2>
+                    <button class="btn btn-secondary" onclick="addPricingPackage()">+ افزودن پکیج</button>
                 </div>
-            </div>
-
-            <!-- Gallery Management -->
-            <div class="admin-section">
-                <h3 class="admin-section-title">
-                    <i data-lucide="image" style="width: 22px; height: 22px;"></i>
-                    مدیریت گالری
-                </h3>
-                
-                <div style="margin-bottom: 25px;">
-                    <button class="btn btn-primary" onclick="addGalleryItem()">
-                        <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
-                        افزودن تصویر جدید
-                    </button>
-                </div>
-
-                <div class="gallery-manage" id="adminGalleryGrid">
-                    <!-- Gallery items will be loaded dynamically -->
+                <div class="admin-card" id="pricingAdminContainer">
+                    <!-- Pricing packages will be loaded here -->
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Success Toast -->
+    <div class="success-toast" id="successToast">✓ تغییرات با موفقیت ذخیره شد!</div>
+
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Default Gallery Data
-        const defaultGalleryItems = [
-            {
-                id: 1,
-                image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&fit=crop",
-                title: "پوستر کنسرت موسیقی",
-                category: "پوستر"
+        // ==================== DATA MANAGEMENT ====================
+        const DEFAULT_DATA = {
+            hero: {
+                title: 'تمپلی وایب',
+                subtitle: 'فروش قالب‌های گرافیکی حرفه‌ای',
+                description: 'قالب‌های آماده برای ویرایش سریع و حرفه‌ای در Canva، Photoshop و Illustrator',
+                image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+                telegramLink: 'https://t.me/TempliVibe',
+                stats: {
+                    templates: '+500',
+                    customers: '+2000',
+                    downloads: '+10000'
+                }
             },
-            {
-                id: 2,
-                image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=400&fit=crop",
-                title: "قالب استوری اینستاگرام",
-                category: "شبکه اجتماعی"
-            },
-            {
-                id: 3,
-                image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop",
-                title: "طراحی لوگو مدرن",
-                category: "لوگو"
-            },
-            {
-                id: 4,
-                image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
-                title: "بنر تبلیغاتی",
-                category: "بنر"
-            },
-            {
-                id: 5,
-                image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop",
-                title: "کارت ویزیت لوکس",
-                category: "کارت ویزیت"
-            },
-            {
-                id: 6,
-                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop",
-                title: "پوستر رویداد",
-                category: "پوستر"
-            },
-            {
-                id: 7,
-                image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&h=400&fit=crop",
-                title: "قالب پست اینستاگرام",
-                category: "شبکه اجتماعی"
-            },
-            {
-                id: 8,
-                image: "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=600&h=400&fit=crop",
-                title: "طراحی منو رستوران",
-                category: "منو"
-            }
-        ];
-
-        // Default Settings
-        const defaultSettings = {
-            heroTitle: "تمپلی‌وایب",
-            heroSubtitle: "قالب‌های آماده برای ویرایش سریع و حرفه‌ای. با استفاده از قالب‌های ما، زمان طراحی خود را به حداقل برسانید و نتیجه‌ای شگفت‌انگیز بگیرید.",
-            heroImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
-            telegramLink: "https://t.me/TempliVibe",
-            pricingName: "پکیج حرفه‌ای",
-            pricingPrice: "۱۴۹,۰۰۰",
-            templateCount: "بیش از ۱۵۰ قالب آماده",
+            gallery: [
+                { id: 1, image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=450&fit=crop', title: 'قالب پوستر مدرن', category: 'پوستر' },
+                { id: 2, image: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=450&fit=crop', title: 'قالب اینستاگرام', category: 'سوشال' },
+                { id: 3, image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=450&fit=crop', title: 'قالب کارت ویزیت', category: 'برندینگ' },
+                { id: 4, image: 'https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=600&h=450&fit=crop', title: 'قالب لوگو', category: 'لوگو' },
+                { id: 5, image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=450&fit=crop', title: 'قالب بنر تبلیغاتی', category: 'بنر' },
+                { id: 6, image: 'https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=600&h=450&fit=crop', title: 'قالب استوری', category: 'سوشال' },
+                { id: 7, image: 'https://images.unsplash.com/photo-1561070791-36c11767b26a?w=600&h=450&fit=crop', title: 'قالب فلایر', category: 'پرینت' },
+                { id: 8, image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=600&h=450&fit=crop', title: 'قالب پرزنتیشن', category: 'ارائه' }
+            ],
+            pricing: [
+                {
+                    id: 1,
+                    name: 'پکیج استارتر',
+                    price: '۴۹,۰۰۰',
+                    featured: false,
+                    features: ['۱۰ قالب پوستر', 'فرمت PSD و Canva', 'پشتیبانی ۷ روزه', 'آپدیت رایگان']
+                },
+                {
+                    id: 2,
+                    name: 'پکیج حرفه‌ای',
+                    price: '۱۴۹,۰۰۰',
+                    featured: true,
+                    features: ['۵۰ قالب متنوع', 'تمام فرمت‌ها', 'پشتیبانی ۳۰ روزه', 'آپدیت مادام‌العمر', 'فایل‌های سورس']
+                },
+                {
+                    id: 3,
+                    name: 'پکیج آنلیمیتد',
+                    price: '۲۹۹,۰۰۰',
+                    featured: false,
+                    features: ['دسترسی به همه قالب‌ها', 'تمام فرمت‌ها', 'پشتیبانی VIP', 'آپدیت مادام‌العمر', 'قالب‌های اختصاصی', 'مشاوره رایگان']
+                }
+            ],
             stats: {
-                orders: "۱۲۵",
-                downloads: "۲,۳۴۵",
-                users: "۵۸۷",
-                revenue: "۱۸.۵M"
+                orders: 156,
+                downloads: 2340,
+                visitors: 8920,
+                revenue: '۱۲.۵M'
             }
         };
 
-        // State
-        let isLoggedIn = false;
+        let siteData = JSON.parse(localStorage.getItem('templivibe_data')) || DEFAULT_DATA;
+        let currentLightboxIndex = 0;
         let loginAttempts = 0;
         const MAX_LOGIN_ATTEMPTS = 5;
-        const CORRECT_PASSWORD = "4748temp";
+        const CORRECT_PASSWORD = '4748temp';
 
-        // Initialize
+        // ==================== INITIALIZATION ====================
         document.addEventListener('DOMContentLoaded', function() {
-            loadSettings();
-            loadGallery();
-            initScrollEffects();
-            initSmoothScroll();
+            loadSiteData();
+            setupEventListeners();
+            
+            // Hide loader after content loads
+            setTimeout(() => {
+                document.getElementById('pageLoader').classList.add('hidden');
+            }, 1500);
         });
 
-        // Load Settings from LocalStorage
-        function loadSettings() {
-            const saved = localStorage.getItem('templivibe_settings');
-            const settings = saved ? JSON.parse(saved) : defaultSettings;
+        function loadSiteData() {
+            // Load Hero Section
+            document.getElementById('heroTitle').innerHTML = `${siteData.hero.title}<br><span class="neon-text">${siteData.hero.subtitle}</span>`;
+            document.getElementById('heroSubtitle').textContent = siteData.hero.description;
+            document.getElementById('heroImage').src = siteData.hero.image;
+            document.getElementById('statTemplates').textContent = siteData.hero.stats.templates;
+            document.getElementById('statCustomers').textContent = siteData.hero.stats.customers;
+            document.getElementById('statDownloads').textContent = siteData.hero.stats.downloads;
             
-            // Apply settings to main page
-            document.getElementById('heroTitle').innerHTML = `${settings.heroTitle}<br><span>فروش قالب‌های گرافیکی حرفه‌ای</span>`;
-            document.getElementById('heroSubtitle').textContent = settings.heroSubtitle;
-            document.getElementById('heroImage').src = settings.heroImage;
-            
-            // Update all telegram links
-            const telegramLinks = ['heroBtn', 'pricingTelegramBtn', 'ctaTelegramBtn'];
-            telegramLinks.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.href = settings.telegramLink;
+            // Update telegram links
+            const telegramLinks = document.querySelectorAll('a[href*="t.me"]');
+            telegramLinks.forEach(link => {
+                link.href = siteData.hero.telegramLink;
             });
-            
-            // Update pricing
-            document.getElementById('pricingName').textContent = settings.pricingName;
-            document.getElementById('pricingPrice').textContent = settings.pricingPrice;
-            document.getElementById('featureCount').textContent = settings.templateCount;
-            
-            // Update admin form
-            if (document.getElementById('adminHeroTitle')) {
-                document.getElementById('adminHeroTitle').value = settings.heroTitle;
-                document.getElementById('adminHeroSubtitle').value = settings.heroSubtitle;
-                document.getElementById('adminTelegramLink').value = settings.telegramLink;
-                document.getElementById('adminPricingName').value = settings.pricingName;
-                document.getElementById('adminPricingPrice').value = settings.pricingPrice;
-                document.getElementById('adminTemplateCount').value = settings.templateCount;
-                
-                // Show hero image preview
-                if (settings.heroImage) {
-                    document.getElementById('heroImagePreview').src = settings.heroImage;
-                    document.getElementById('heroImagePreview').style.display = 'block';
-                }
-            }
+
+            // Load Gallery
+            loadGallery();
+
+            // Load Pricing
+            loadPricing();
+
+            // Load Admin Data
+            loadAdminData();
         }
 
-        // Load Gallery
         function loadGallery() {
-            const saved = localStorage.getItem('templivibe_gallery');
-            const gallery = saved ? JSON.parse(saved) : defaultGalleryItems;
-            
-            renderMainGallery(gallery);
-            renderAdminGallery(gallery);
-        }
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
 
-        // Render Main Gallery
-        function renderMainGallery(gallery) {
-            const grid = document.getElementById('galleryGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = gallery.map(item => `
-                <div class="gallery-item" onclick="openLightbox('${item.image}')">
+            siteData.gallery.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" loading="lazy">
+                    <div class="gallery-zoom">🔍</div>
                     <div class="gallery-overlay">
-                        <div class="gallery-info">
+                        <div class="gallery-overlay-content">
                             <h4>${item.title}</h4>
-                            <p>${item.category}</p>
+                            <span>${item.category}</span>
                         </div>
                     </div>
-                    <div class="gallery-zoom">
-                        <i data-lucide="zoom-in" style="width: 24px; height: 24px;"></i>
-                    </div>
-                </div>
-            `).join('');
-            
-            lucide.createIcons();
+                `;
+                galleryItem.onclick = () => openLightbox(index);
+                galleryGrid.appendChild(galleryItem);
+            });
         }
 
-        // Render Admin Gallery
-        function renderAdminGallery(gallery) {
-            const grid = document.getElementById('adminGalleryGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = gallery.map(item => `
-                <div class="gallery-manage-item" data-id="${item.id}">
+        function loadPricing() {
+            const pricingCards = document.getElementById('pricingCards');
+            pricingCards.innerHTML = '';
+
+            siteData.pricing.forEach(pkg => {
+                const card = document.createElement('div');
+                card.className = `pricing-card ${pkg.featured ? 'featured' : ''}`;
+                card.innerHTML = `
+                    <div class="pricing-header">
+                        <h3>${pkg.name}</h3>
+                        <div class="price">${pkg.price} <span>تومان</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        ${pkg.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                    <a href="${siteData.hero.telegramLink}" target="_blank" class="btn ${pkg.featured ? 'btn-primary' : 'btn-secondary'}">
+                        📱 خرید از تلگرام
+                    </a>
+                `;
+                pricingCards.appendChild(card);
+            });
+        }
+
+        function loadAdminData() {
+            // Hero section inputs
+            document.getElementById('adminHeroTitle').value = siteData.hero.title;
+            document.getElementById('adminHeroSubtitle').value = siteData.hero.subtitle;
+            document.getElementById('adminHeroDesc').value = siteData.hero.description;
+            document.getElementById('adminTelegramLink').value = siteData.hero.telegramLink;
+            document.getElementById('adminStatTemplates').value = siteData.hero.stats.templates;
+            document.getElementById('adminStatCustomers').value = siteData.hero.stats.customers;
+            document.getElementById('adminStatDownloads2').value = siteData.hero.stats.downloads;
+
+            // Hero image preview
+            const heroUpload = document.getElementById('heroImageUpload');
+            if (siteData.hero.image) {
+                heroUpload.classList.add('has-image');
+                heroUpload.innerHTML = `
+                    <img src="${siteData.hero.image}" alt="Hero Image">
+                    <input type="file" accept="image/*" onchange="uploadHeroImage(event)">
+                `;
+            }
+
+            // Gallery admin
+            loadAdminGallery();
+
+            // Pricing admin
+            loadAdminPricing();
+
+            // Stats
+            document.getElementById('adminStatOrders').textContent = siteData.stats.orders;
+            document.getElementById('adminStatDownloads').textContent = siteData.stats.downloads.toLocaleString();
+            document.getElementById('adminStatVisitors').textContent = siteData.stats.visitors.toLocaleString();
+            document.getElementById('adminStatRevenue').textContent = siteData.stats.revenue;
+        }
+
+        function loadAdminGallery() {
+            const galleryGrid = document.getElementById('galleryAdminGrid');
+            galleryGrid.innerHTML = '';
+
+            siteData.gallery.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-admin-item';
+                galleryItem.innerHTML = `
                     <img src="${item.image}" alt="${item.title}">
-                    <div class="gallery-manage-actions">
-                        <button class="gallery-manage-btn move" title="جابجایی">
-                            <i data-lucide="move" style="width: 16px; height: 16px;"></i>
-                        </button>
-                        <button class="gallery-manage-btn" onclick="deleteGalleryItem(${item.id})" title="حذف">
-                            <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
-                        </button>
+                    <button class="delete-btn" onclick="deleteGalleryItem(${index})">✕</button>
+                `;
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            // Add button
+            const addItem = document.createElement('div');
+            addItem.className = 'gallery-admin-item add-gallery-item';
+            addItem.innerHTML = `
+                <div class="plus-icon">+</div>
+                <p>افزودن تصویر</p>
+                <input type="file" accept="image/*" onchange="addGalleryImage(event)" multiple>
+            `;
+            galleryGrid.appendChild(addItem);
+        }
+
+        function loadAdminPricing() {
+            const container = document.getElementById('pricingAdminContainer');
+            container.innerHTML = '';
+
+            siteData.pricing.forEach((pkg, index) => {
+                const pkgCard = document.createElement('div');
+                pkgCard.style.cssText = 'padding: 20px; background: var(--dark-bg); border-radius: 15px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1);';
+                pkgCard.innerHTML = `
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>نام پکیج</label>
+                            <input type="text" value="${pkg.name}" onchange="updatePricing(${index}, 'name', this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label>قیمت</label>
+                            <input type="text" value="${pkg.price}" onchange="updatePricing(${index}, 'price', this.value)">
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                            <label style="margin: 0;">ویژه</label>
+                            <input type="checkbox" ${pkg.featured ? 'checked' : ''} onchange="updatePricing(${index}, 'featured', this.checked)" style="width: 20px; height: 20px;">
+                        </div>
                     </div>
-                </div>
-            `).join('');
-            
-            lucide.createIcons();
+                    <div class="form-group">
+                        <label>ویژگی‌ها (هر خط یک ویژگی)</label>
+                        <textarea onchange="updatePricingFeatures(${index}, this.value)">${pkg.features.join('\n')}</textarea>
+                    </div>
+                    <button class="btn btn-secondary" onclick="deletePricing(${index})" style="background: #ff4757; border-color: #ff4757; color: white;">حذف پکیج</button>
+                `;
+                container.appendChild(pkgCard);
+            });
         }
 
-        // Save Settings
-        function saveSettings() {
-            const settings = {
-                heroTitle: document.getElementById('adminHeroTitle')?.value || defaultSettings.heroTitle,
-                heroSubtitle: document.getElementById('adminHeroSubtitle')?.value || defaultSettings.heroSubtitle,
-                heroImage: document.getElementById('heroImagePreview')?.src || defaultSettings.heroImage,
-                telegramLink: document.getElementById('adminTelegramLink')?.value || defaultSettings.telegramLink,
-                pricingName: document.getElementById('adminPricingName')?.value || defaultSettings.pricingName,
-                pricingPrice: document.getElementById('adminPricingPrice')?.value || defaultSettings.pricingPrice,
-                templateCount: document.getElementById('adminTemplateCount')?.value || defaultSettings.templateCount,
-                stats: defaultSettings.stats
-            };
-            
-            localStorage.setItem('templivibe_settings', JSON.stringify(settings));
-            
-            // Show save indicator
-            const indicator = document.getElementById('saveIndicator');
-            if (indicator) {
-                indicator.style.display = 'inline-flex';
-                setTimeout(() => {
-                    indicator.style.display = 'none';
-                }, 2000);
-            }
-            
-            // Apply changes to main page
-            loadSettings();
+        // ==================== EVENT LISTENERS ====================
+        function setupEventListeners() {
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Close lightbox on escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                    closeAdminLogin();
+                }
+                if (e.key === 'ArrowLeft') navigateLightbox(1);
+                if (e.key === 'ArrowRight') navigateLightbox(-1);
+            });
+
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-slideUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.feature-card, .pricing-card, .gallery-item').forEach(el => {
+                observer.observe(el);
+            });
         }
 
-        // Handle Hero Image Upload
-        function handleHeroImageUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.getElementById('heroImagePreview');
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    saveSettings();
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Add Gallery Item
-        function addGalleryItem() {
-            const url = prompt('لینک تصویر را وارد کنید:', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop');
-            if (!url) return;
-            
-            const title = prompt('عنوان تصویر:', 'قالب جدید');
-            const category = prompt('دسته‌بندی:', 'عمومی');
-            
-            const saved = localStorage.getItem('templivibe_gallery');
-            const gallery = saved ? JSON.parse(saved) : [...defaultGalleryItems];
-            
-            const newItem = {
-                id: Date.now(),
-                image: url,
-                title: title || 'قالب جدید',
-                category: category || 'عمومی'
-            };
-            
-            gallery.push(newItem);
-            localStorage.setItem('templivibe_gallery', JSON.stringify(gallery));
-            
-            renderMainGallery(gallery);
-            renderAdminGallery(gallery);
-            
-            // Show save indicator
-            const indicator = document.getElementById('saveIndicator');
-            if (indicator) {
-                indicator.style.display = 'inline-flex';
-                setTimeout(() => {
-                    indicator.style.display = 'none';
-                }, 2000);
-            }
-        }
-
-        // Delete Gallery Item
-        function deleteGalleryItem(id) {
-            if (!confirm('آیا از حذف این تصویر اطمینان دارید؟')) return;
-            
-            const saved = localStorage.getItem('templivibe_gallery');
-            let gallery = saved ? JSON.parse(saved) : [...defaultGalleryItems];
-            
-            gallery = gallery.filter(item => item.id !== id);
-            localStorage.setItem('templivibe_gallery', JSON.stringify(gallery));
-            
-            renderMainGallery(gallery);
-            renderAdminGallery(gallery);
-        }
-
-        // Lightbox
-        function openLightbox(imageSrc) {
+        // ==================== LIGHTBOX ====================
+        function openLightbox(index) {
+            currentLightboxIndex = index;
             const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = imageSrc;
+            const image = document.getElementById('lightboxImage');
+            image.src = siteData.gallery[index].image;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
+            document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        // Close lightbox on click outside
-        document.getElementById('lightbox')?.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLightbox();
-            }
-        });
-
-        // Close lightbox on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-                closeMobileMenu();
-            }
-        });
-
-        // Navigation
-        function showMainPage() {
-            document.getElementById('mainPage').classList.add('active');
-            document.getElementById('adminLoginPage').classList.remove('active');
-            document.getElementById('adminDashboard').classList.remove('active');
-            loadSettings();
-            loadGallery();
-            lucide.createIcons();
+        function navigateLightbox(direction) {
+            currentLightboxIndex += direction;
+            if (currentLightboxIndex < 0) currentLightboxIndex = siteData.gallery.length - 1;
+            if (currentLightboxIndex >= siteData.gallery.length) currentLightboxIndex = 0;
+            document.getElementById('lightboxImage').src = siteData.gallery[currentLightboxIndex].image;
         }
 
-        function showAdminLogin() {
-            document.getElementById('mainPage').classList.remove('active');
-            document.getElementById('adminLoginPage').classList.add('active');
-            document.getElementById('adminDashboard').classList.remove('active');
-            document.getElementById('loginError').classList.remove('show');
-            document.getElementById('adminPassword').value = '';
-            lucide.createIcons();
-        }
-
-        function showAdminDashboard() {
-            document.getElementById('mainPage').classList.remove('active');
-            document.getElementById('adminLoginPage').classList.remove('active');
-            document.getElementById('adminDashboard').classList.add('active');
-            loadSettings();
-            loadGallery();
-            lucide.createIcons();
-        }
-
-        // Login Handler
-        function handleLogin(event) {
-            event.preventDefault();
-            
+        // ==================== ADMIN PANEL ====================
+        function openAdminLogin() {
             if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
-                document.getElementById('loginError').innerHTML = `
-                    <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
-                    <span>تعداد تلاش‌ها بیش از حد مجاز است. لطفاً بعداً تلاش کنید.</span>
-                `;
-                document.getElementById('loginError').classList.add('show');
-                lucide.createIcons();
+                alert('تعداد تلاش‌های ناموفق زیاد است. لطفاً بعداً دوباره امتحان کنید.');
                 return;
             }
-            
+            document.getElementById('adminOverlay').classList.add('active');
+            document.getElementById('adminPassword').focus();
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('adminOverlay').classList.remove('active');
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').classList.remove('show');
+        }
+
+        function handlePasswordKeypress(e) {
+            if (e.key === 'Enter') attemptLogin();
+        }
+
+        function attemptLogin() {
             const password = document.getElementById('adminPassword').value;
             
             if (password === CORRECT_PASSWORD) {
-                isLoggedIn = true;
+                closeAdminLogin();
+                openDashboard();
                 loginAttempts = 0;
-                showAdminDashboard();
             } else {
                 loginAttempts++;
                 document.getElementById('loginError').classList.add('show');
                 document.getElementById('adminPassword').value = '';
-                lucide.createIcons();
+                
+                if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                    alert('تعداد تلاش‌های ناموفق زیاد است. لطفاً ۱۰ دقیقه صبر کنید.');
+                    setTimeout(() => { loginAttempts = 0; }, 600000);
+                }
             }
         }
 
-        // Logout
-        function logout() {
-            isLoggedIn = false;
-            showAdminLogin();
-        }
-
-        // Mobile Menu
-        function openMobileMenu() {
-            document.getElementById('mobileMenu').classList.add('active');
-            document.getElementById('mobileMenuOverlay').classList.add('active');
+        function openDashboard() {
+            document.getElementById('adminDashboard').classList.add('active');
             document.body.style.overflow = 'hidden';
+            loadAdminData();
         }
 
-        function closeMobileMenu() {
-            document.getElementById('mobileMenu').classList.remove('active');
-            document.getElementById('mobileMenuOverlay').classList.remove('active');
+        function logoutAdmin() {
+            document.getElementById('adminDashboard').classList.remove('active');
             document.body.style.overflow = '';
         }
 
-        document.getElementById('mobileMenuOverlay')?.addEventListener('click', closeMobileMenu);
+        function previewSite() {
+            saveAllData();
+            logoutAdmin();
+        }
 
-        // Scroll Effects
-        function initScrollEffects() {
-            const navbar = document.getElementById('navbar');
-            
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 
+        // ==================== DATA UPDATES ====================
+        function uploadHeroImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    siteData.hero.image = e.target.result;
+                    document.getElementById('heroImage').src = e.target.result;
+                    
+                    const heroUpload = document.getElementById('heroImageUpload');
+                    heroUpload.classList.add('has-image');
+                    heroUpload.innerHTML = `
+                        <img src="${e.target.result}" alt="Hero Image">
+                        <input type="file" accept="image/*" onchange="uploadHeroImage(event)">
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function addGalleryImage(event) {
+            const files = event.target.files;
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    siteData.gallery.push({
+                        id: Date.now(),
+                        image: e.target.result,
+                        title: 'قالب جدید',
+                        category: 'دسته‌بندی'
+                    });
+                    loadAdminGallery();
+                    loadGallery();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function deleteGalleryItem(index) {
+            if (confirm('آیا مطمئن هستید که می‌خواهید این تصویر را حذف کنید؟')) {
+                siteData.gallery.splice(index, 1);
+                loadAdminGallery();
+                loadGallery();
+            }
+        }
+
+        function updatePricing(index, field, value) {
+            siteData.pricing[index][field] = value;
+        }
+
+        function updatePricingFeatures(index, value) {
+            siteData.pricing[index].features = value.split('\n').filter(f => f.trim());
+        }
+
+        function addPricingPackage() {
+            siteData.pricing.push({
+                id: Date.now(),
+                name: 'پکیج جدید',
+                price: '۰',
+                featured: false,
+                features: ['ویژگی ۱', 'ویژگی ۲']
+            });
+            loadAdminPricing();
+        }
+
+        function deletePricing(index) {
+            if (confirm('آیا مطمئن هستید که می‌خواهید این پکیج را حذف کنید؟')) {
+                siteData.pricing.splice(index, 1);
+                loadAdminPricing();
+            }
+        }
+
+        function saveAllData() {
+            // Collect data from admin inputs
+            siteData.hero.title = document.getElementById('adminHeroTitle').value;
+            siteData.hero.subtitle = document.getElementById('adminHeroSubtitle').value;
+            siteData.hero.description = document.getElementById('adminHeroDesc').value;
+            siteData.hero.telegramLink = document.getElementById('adminTelegramLink').value;
+            siteData.hero.stats.templates = document.getElementById('adminStatTemplates').value;
+            siteData.hero.stats.customers = document.getElementById('adminStatCustomers').value;
+            siteData.hero.stats.downloads = document.getElementById('adminStatDownloads2').value;
+
+            // Save to localStorage
+            localStorage.setItem('templivibe_data', JSON.stringify(siteData));
+
+            // Reload site data
+            loadSiteData();
+
+            // Show success toast
+            showToast();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('successToast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ==================== UTILITIES ====================
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '20px';
+            navLinks.style.background = 'var(--dark-glass)';
+            navLinks.style.padding = '20px';
+            navLinks.style.borderRadius = '15px';
+            navLinks.style.backdropFilter = 'blur(20px)';
+        }
+
+        // Increment stats randomly for demo
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                siteData.stats.visitors++;
+                document.getElementById('adminStatVisitors').textContent = siteData.stats.visitors.toLocaleString();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
