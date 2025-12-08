@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<! DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1. 0">
     <title>TempliVibe - قالب‌های حرفه‌ای</title>
     <link href="https://fonts.googleapis.com/css2? family=Poppins:wght@300;400;500;600;700;800;900&family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare. com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #ff3333;
@@ -218,7 +218,7 @@
             font-size: 13px;
         }
 
-        .btn:disabled {
+        . btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             pointer-events: none;
@@ -268,13 +268,13 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        .nav-links {
+        . nav-links {
             display: flex;
             gap: 40px;
             list-style: none;
         }
 
-        .nav-links a {
+        . nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
@@ -394,7 +394,7 @@
         }
 
         .hero-image:hover img {
-            transform: scale(1.05) translateY(-10px);
+            transform: scale(1. 05) translateY(-10px);
             border-color: var(--primary);
             box-shadow: 0 30px 80px rgba(255, 51, 51, 0.3);
         }
@@ -422,7 +422,7 @@
         }
 
         /* ===== PRODUCTS SECTION ===== */
-        .products-section {
+        . products-section {
             padding: 120px 0;
             position: relative;
         }
@@ -532,7 +532,6 @@
             background: var(--dark-card);
             border: 1px solid rgba(255, 51, 51, 0.15);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            group: 'product';
         }
 
         .product-card:hover {
@@ -625,7 +624,7 @@
             padding: 25px;
         }
 
-        . product-category {
+        .product-category {
             color: var(--primary);
             font-size: 12px;
             font-weight: 700;
@@ -674,7 +673,7 @@
             overflow: hidden;
         }
 
-        .feature-card::before {
+        . feature-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -766,13 +765,13 @@
             font-size: 16px;
         }
 
-        .login-form {
+        . login-form {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .form-input {
+        . form-input {
             padding: 16px 20px;
             border-radius: 12px;
             border: 2px solid rgba(255, 51, 51, 0.2);
@@ -829,7 +828,7 @@
             overflow: hidden;
         }
 
-        .admin-dashboard.active {
+        . admin-dashboard.active {
             display: flex;
             animation: fadeIn 0.3s ease-out;
         }
@@ -841,7 +840,7 @@
             overflow: hidden;
         }
 
-        .dashboard-sidebar {
+        . dashboard-sidebar {
             width: 280px;
             background: linear-gradient(180deg, var(--dark-card) 0%, var(--dark-light) 100%);
             border-right: 1px solid rgba(255, 51, 51, 0.15);
@@ -964,7 +963,7 @@
 
         . stat-card {
             background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-light) 100%);
-            border: 1px solid rgba(255, 51, 51, 0. 15);
+            border: 1px solid rgba(255, 51, 51, 0.15);
             border-radius: 12px;
             padding: 30px 25px;
             text-align: center;
@@ -1005,630 +1004,102 @@
 
         . stat-card-label {
             color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .form-section {
-            background: var(--dark-card);
-            border: 1px solid rgba(255, 51, 51, 0.15);
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
-            animation: slideUp 0.5s ease-out;
-        }
-
-        .form-section h3 {
-            font-size: 22px;
-            margin-bottom: 30px;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        . form-section h3 i {
-            color: var(--primary);
-            font-size: 24px;
-        }
-
-        . form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
-        . form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        . form-group label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 14px 16px;
-            border-radius: 10px;
-            border: 2px solid rgba(255, 51, 51, 0.15);
-            background: rgba(255, 51, 51, 0.05);
-            color: var(--text-primary);
-            font-family: inherit;
-            transition: all 0.3s ease;
-            font-size: 15px;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
-
-        . form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(255, 51, 51, 0.08);
-            box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .file-input-wrapper input[type="file"] {
-            position: absolute;
-            left: -9999px;
-        }
-
-        .file-input-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 30px;
-            border: 2px dashed rgba(255, 51, 51, 0. 3);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0. 3s ease;
-            background: rgba(255, 51, 51, 0.05);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .file-input-label::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 51, 51, 0.1) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-
-        .file-input-label:hover {
-            border-color: var(--primary);
-            background: rgba(255, 51, 51, 0.1);
-            transform: translateY(-3px);
-        }
-
-        . file-input-label:hover::before {
-            transform: translateX(100%);
-        }
-
-        .file-input-label i {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        . image-preview {
-            margin-top: 25px;
-            text-align: center;
-        }
-
-        .image-preview img {
-            max-width: 250px;
-            max-height: 250px;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 51, 51, 0.2);
-            box-shadow: 0 10px 30px rgba(255, 51, 51, 0.2);
-        }
-
-        .products-table {
-            background: var(--dark-card);
-            border: 1px solid rgba(255, 51, 51, 0.15);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .table-header {
-            display: grid;
-            grid-template-columns: 100px 1fr 1fr 1fr 150px;
-            gap: 20px;
-            padding: 25px;
-            background: linear-gradient(90deg, rgba(255, 51, 51, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
-            border-bottom: 2px solid rgba(255, 51, 51, 0.15);
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        . table-row {
-            display: grid;
-            grid-template-columns: 100px 1fr 1fr 1fr 150px;
-            gap: 20px;
-            padding: 20px 25px;
-            border-bottom: 1px solid rgba(255, 51, 51, 0.08);
-            align-items: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .table-row:hover {
-            background: rgba(255, 51, 51, 0.05);
-            padding-left: 30px;
-        }
-
-        . table-row img {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            object-fit: cover;
-            border: 2px solid rgba(255, 51, 51, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .table-row:hover img {
-            border-color: var(--primary);
-            box-shadow: 0 5px 15px rgba(255, 51, 51, 0. 2);
-        }
-
-        . table-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .table-actions . btn {
-            padding: 8px 14px;
-            font-size: 12px;
-            min-width: 60px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 80px 40px;
-            color: var(--text-secondary);
-        }
-
-        .empty-state i {
-            font-size: 64px;
-            margin-bottom: 20px;
-            color: var(--primary);
-            opacity: 0.6;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        . empty-state p {
-            font-size: 16px;
-        }
-
-        /* ===== NOTIFICATION ===== */
-        .notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 18px 25px;
-            border-radius: 12px;
-            background: var(--dark-card);
-            border: 2px solid rgba(255, 51, 51, 0.3);
-            color: white;
-            z-index: 20000;
-            display: none;
-            align-items: center;
-            gap: 15px;
-            animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .notification.show {
-            display: flex;
-        }
-
-        .notification. success {
-            border-color: var(--success);
-            background: rgba(74, 222, 128, 0.1);
-        }
-
-        .notification.success i {
-            color: var(--success);
-        }
-
-        . notification.error {
-            border-color: var(--danger);
-            background: rgba(255, 68, 68, 0.1);
-        }
-
-        .notification.error i {
-            color: var(--danger);
+            font-size: 13px;
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
             .hero-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            . dashboard-main {
-                padding: 30px 20px;
-            }
-
-            .table-header,
-            .table-row {
-                grid-template-columns: 80px 1fr 1fr 100px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                gap: 20px;
-                font-size: 14px;
             }
 
             .hero-text h1 {
-                font-size: 40px;
-            }
-
-            . hero-buttons {
-                flex-direction: column;
-            }
-
-            .hero-buttons . btn {
-                width: 100%;
-            }
-
-            .dashboard-sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 51, 51, 0.15);
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 15px;
-            }
-
-            .sidebar-menu {
-                display: flex;
-                gap: 10px;
-                margin-bottom: 0;
-                flex: 1;
-            }
-
-            .sidebar-menu li {
-                margin-bottom: 0;
-                flex: 1;
-            }
-
-            .sidebar-menu button {
-                white-space: nowrap;
-                padding: 10px 12px;
-                font-size: 12px;
-            }
-
-            .dashboard-main {
-                padding: 20px;
-            }
-
-            .table-header,
-            .table-row {
-                grid-template-columns: 70px 1fr 80px;
+                font-size: 48px;
             }
 
             . section-header h2 {
-                font-size: 32px;
+                font-size: 36px;
+            }
+
+            . nav-links {
+                gap: 20px;
             }
 
             . products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
-        }
 
-        .  section-content {
-            display: none;
-        }
+            .dashboard-sidebar {
+                width: 100%;
+                max-height: 200px;
+                overflow-x: auto;
+                flex-direction: row;
+            }
 
-        .section-content.active {
-            display: block;
-            animation: slideUp 0.5s ease-out;
+            .dashboard-main {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="container">
             <div class="navbar-content">
                 <a href="#" class="logo">
-                    <i class="fas fa-rocket"></i>TempliVibe
+                    <i class="fas fa-cube"></i>
+                    TempliVibe
                 </a>
                 <ul class="nav-links">
+                    <li><a href="#hero">خانه</a></li>
                     <li><a href="#products">محصولات</a></li>
                     <li><a href="#features">ویژگی‌ها</a></li>
+                    <li><a href="#contact">تماس</a></li>
                 </ul>
                 <div class="nav-right">
-                    <button class="btn btn-primary btn-sm" id="adminLoginBtn">
-                        <i class="fas fa-shield-alt"></i> پنل مدیریت
-                    </button>
+                    <button class="btn btn-outline btn-sm" id="loginBtn">ورود</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ===== LOGIN MODAL ===== -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-modal">
-            <h2><i class="fas fa-lock"></i> ورود امن</h2>
-            <p>پنل مدیریت سایت TempliVibe</p>
-            <form class="login-form" id="loginForm" onsubmit="return app.handleLogin(event)">
-                <input type="password" class="form-input" id="passwordInput" placeholder="رمز عبور" autocomplete="off">
-                <div class="error-message" id="errorMessage">
-                    <i class="fas fa-exclamation-circle"></i> رمز عبور اشتباه است
-                </div>
-                <div class="login-buttons">
-                    <button type="submit" class="btn btn-primary">ورود</button>
-                    <button type="button" class="btn btn-outline" onclick="app.closeLogin()">انصراف</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- ===== ADMIN DASHBOARD ===== -->
-    <div class="admin-dashboard" id="adminDashboard">
-        <div class="dashboard-container">
-            <!-- Sidebar -->
-            <div class="dashboard-sidebar">
-                <h3><i class="fas fa-cog"></i> پنل مدیریت</h3>
-                <ul class="sidebar-menu">
-                    <li><button class="menu-btn active" data-section="dashboard">
-                        <i class="fas fa-chart-line"></i> <span>داشبورد</span>
-                    </button></li>
-                    <li><button class="menu-btn" data-section="add-product">
-                        <i class="fas fa-plus-circle"></i> <span>افزودن محصول</span>
-                    </button></li>
-                    <li><button class="menu-btn" data-section="products-list">
-                        <i class="fas fa-list"></i> <span>لیست محصولات</span>
-                    </button></li>
-                    <li><button class="menu-btn" data-section="settings">
-                        <i class="fas fa-sliders-h"></i> <span>تنظیمات</span>
-                    </button></li>
-                </ul>
-                <ul class="sidebar-menu sidebar-logout">
-                    <li><button id="logoutBtn" style="width: 100%;">
-                        <i class="fas fa-sign-out-alt"></i> <span>خروج</span>
-                    </button></li>
-                </ul>
-            </div>
-
-            <!-- Main Content -->
-            <div class="dashboard-main">
-                <!-- Dashboard Section -->
-                <div id="dashboard" class="section-content active">
-                    <div class="dashboard-header">
-                        <h2><i class="fas fa-chart-line"></i> داشبورد</h2>
-                    </div>
-
-                    <div class="dashboard-stats">
-                        <div class="stat-card">
-                            <div class="stat-card-value" id="totalProducts">0</div>
-                            <div class="stat-card-label">کل محصولات</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-value" id="totalViews">0</div>
-                            <div class="stat-card-label">بازدید کل</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-value" id="totalPrice">0</div>
-                            <div class="stat-card-label">ارزش کل</div>
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h3><i class="fas fa-info-circle"></i> اطلاعات سایت</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>نام سایت</label>
-                                <input type="text" id="siteName" placeholder="TempliVibe" value="TempliVibe">
-                            </div>
-                            <div class="form-group">
-                                <label>ایمیل</label>
-                                <input type="email" id="siteEmail" placeholder="info@templatevibe.com">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>توضیحات سایت</label>
-                            <textarea id="siteDescription" placeholder="توضیحات درباره سایت... ">فروش بهترین قالب‌های گرافیکی حرفه‌ای</textarea>
-                        </div>
-                        <button class="btn btn-primary" style="margin-top: 20px;" onclick="app.saveSettings()">
-                            <i class="fas fa-save"></i> ذخیره تنظیمات
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Add Product Section -->
-                <div id="add-product" class="section-content">
-                    <div class="dashboard-header">
-                        <h2><i class="fas fa-plus-circle"></i> افزودن محصول جدید</h2>
-                    </div>
-
-                    <div class="form-section">
-                        <h3><i class="fas fa-box"></i> اطلاعات محصول</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>نام محصول</label>
-                                <input type="text" id="productName" placeholder="نام محصول را وارد کنید">
-                            </div>
-                            <div class="form-group">
-                                <label>دسته‌بندی</label>
-                                <select id="productCategory">
-                                    <option value="">انتخاب کنید...  </option>
-                                    <option value="ui">طراحی UI</option>
-                                    <option value="web">وب‌سایت</option>
-                                    <option value="app">اپلیکیشن</option>
-                                    <option value="mobile">موبایل</option>
-                                    <option value="graphic">گرافیک</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>قیمت (تومان)</label>
-                                <input type="number" id="productPrice" placeholder="قیمت را وارد کنید" min="0">
-                            </div>
-                            <div class="form-group">
-                                <label>برچسب</label>
-                                <input type="text" id="productBadge" placeholder="مثال: جدید، محبوب، تخفیف" value="جدید">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>توضیحات محصول</label>
-                            <textarea id="productDescription" placeholder="توضیحات کامل محصول را وارد کنید"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>تصویر محصول</label>
-                            <div class="file-input-wrapper">
-                                <label class="file-input-label">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p><strong>تصویر را اینجا بکشید یا کلیک کنید</strong></p>
-                                    <small>PNG, JPG, GIF (حداکثر 5MB)</small>
-                                    <input type="file" id="productImage" accept="image/*">
-                                </label>
-                            </div>
-                            <div class="image-preview" id="imagePreview"></div>
-                        </div>
-
-                        <button class="btn btn-primary" id="addProductBtn" style="margin-top: 30px; width: 100%;">
-                            <i class="fas fa-plus"></i> افزودن محصول
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Products List Section -->
-                <div id="products-list" class="section-content">
-                    <div class="dashboard-header">
-                        <h2><i class="fas fa-list"></i> لیست محصولات</h2>
-                    </div>
-
-                    <div class="products-table">
-                        <div class="table-header">
-                            <span>تصویر</span>
-                            <span>نام</span>
-                            <span>دسته</span>
-                            <span>قیمت</span>
-                            <span>عملیات</span>
-                        </div>
-                        <div id="productsList"></div>
-                    </div>
-                </div>
-
-                <!-- Settings Section -->
-                <div id="settings" class="section-content">
-                    <div class="dashboard-header">
-                        <h2><i class="fas fa-sliders-h"></i> تنظیمات</h2>
-                    </div>
-
-                    <div class="form-section">
-                        <h3><i class="fas fa-palette"></i> تنظیمات رنگی</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>رنگ اصلی</label>
-                                <input type="color" id="primaryColor" value="#ff3333">
-                            </div>
-                            <div class="form-group">
-                                <label>رنگ متن</label>
-                                <input type="color" id="textColor" value="#ffffff">
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" onclick="app.saveColorSettings()" style="margin-top: 20px;">
-                            <i class="fas fa-save"></i> ذخیره رنگ‌ها
-                        </button>
-                    </div>
-
-                    <div class="form-section">
-                        <h3><i class="fas fa-download"></i> صادرات و واردات</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                            <button class="btn btn-secondary" onclick="app.exportData()">
-                                <i class="fas fa-download"></i> صادرات JSON
-                            </button>
-                            <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">
-                                <i class="fas fa-upload"></i> واردات JSON
-                            </button>
-                            <input type="file" id="importFile" accept=".json" style="display: none;">
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h3><i class="fas fa-exclamation-triangle"></i> عملیات خطرناک</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 20px;">این عملیات غیرقابل برگشت است</p>
-                        <button class="btn btn-danger" onclick="app.clearAllData()">
-                            <i class="fas fa-trash"></i> حذف تمام محصولات
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== HERO SECTION ===== -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>قالب‌های گرافیکی <span>حرفه‌ای</span></h1>
-                    <p class="subtitle">بهترین و جدیدترین قالب‌های طراحی را برای پروژه‌های خود انتخاب کنید.  طراحی‌های خلاقانه، کد تمیز و پشتیبانی کامل</p>
+                    <h1>قالب‌های حرفه‌ای برای <span>تجارت دیجیتال</span></h1>
+                    <p class="subtitle">
+                        با استفاده از قالب‌های پیشرفته ما، کسب‌وکار خود را به سطح جدیدی ببرید.  طراحی حرفه‌ای و عملکرد سریع
+                    </p>
                     <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="document.getElementById('products').scrollIntoView()">
-                            <i class="fas fa-shopping-bag"></i> مشاهده محصولات
+                        <button class="btn btn-primary" id="startBtn">
+                            <i class="fas fa-rocket"></i>
+                            شروع کنید
                         </button>
-                        <button class="btn btn-outline">
-                            <i class="fas fa-info-circle"></i> بیشتر بدانید
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-play"></i>
+                            دیدن نمونه
                         </button>
                     </div>
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <div class="stat-number">500+</div>
+                            <div class="stat-number">1000+</div>
                             <div class="stat-label">قالب فعال</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">10K+</div>
-                            <div class="stat-label">کاربر رضایت‌مند</div>
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">کاربر سالانه</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">پشتیبانی تلفنی</div>
+                            <div class="stat-number">99%</div>
+                            <div class="stat-label">رضایت مشتری</div>
                         </div>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash. com/photo-1561070791-2526d30994b5?w=500&h=400&fit=crop" alt="Hero Image">
+                    <img src="https://via.placeholder.com/400x400/ff3333/ffffff?text=Template" alt="Template Preview">
                 </div>
             </div>
         </div>
@@ -1638,30 +1109,133 @@
     <section class="products-section" id="products">
         <div class="container">
             <div class="section-header">
-                <h2>محصولات <span>منتخب</span></h2>
-                <p>برترین قالب‌های طراحی برای تمام نیاز‌های شما</p>
+                <h2>محصولات <span>برتر</span></h2>
+                <p>مجموعه کاملی از قالب‌های آماده برای تمامی نیازهای تجاری شما</p>
             </div>
 
             <div class="products-filters">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th"></i> همه
-                </button>
-                <button class="filter-btn" data-filter="ui">
-                    <i class="fas fa-palette"></i> طراحی UI
-                </button>
-                <button class="filter-btn" data-filter="web">
-                    <i class="fas fa-globe"></i> وب‌سایت
-                </button>
-                <button class="filter-btn" data-filter="app">
-                    <i class="fas fa-mobile-alt"></i> اپلیکیشن
-                </button>
-                <button class="filter-btn" data-filter="mobile">
-                    <i class="fas fa-smartphone"></i> موبایل
-                </button>
+                <button class="filter-btn active" data-filter="all">همه</button>
+                <button class="filter-btn" data-filter="business">کسب‌وکار</button>
+                <button class="filter-btn" data-filter="shop">فروشگاه</button>
+                <button class="filter-btn" data-filter="blog">وبلاگ</button>
+                <button class="filter-btn" data-filter="service">سرویس</button>
             </div>
 
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded here -->
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="business">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x225/ff3333/ffffff?text=Pro+Business" alt="Pro Business">
+                        <div class="product-badge">محبوب</div>
+                        <div class="product-id">#001</div>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm">مشاهده</button>
+                            <button class="btn btn-secondary btn-sm">خرید</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">کسب‌وکار</div>
+                        <div class="product-title">قالب Pro Business</div>
+                        <div class="product-price">$49</div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="shop">
+                    <div class="product-image">
+                        <img src="https://via.placeholder. com/300x225/00d4ff/ffffff?text=Shop+Pro" alt="Shop Pro">
+                        <div class="product-id">#002</div>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm">مشاهده</button>
+                            <button class="btn btn-secondary btn-sm">خرید</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">فروشگاه</div>
+                        <div class="product-title">قالب Shop Pro</div>
+                        <div class="product-price">$59</div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="blog">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x225/ffd700/ffffff?text=Blog+Elite" alt="Blog Elite">
+                        <div class="product-id">#003</div>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm">مشاهده</button>
+                            <button class="btn btn-secondary btn-sm">خرید</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">وبلاگ</div>
+                        <div class="product-title">قالب Blog Elite</div>
+                        <div class="product-price">$39</div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="service">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x225/4ade80/ffffff?text=Service+Max" alt="Service Max">
+                        <div class="product-id">#004</div>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm">مشاهده</button>
+                            <button class="btn btn-secondary btn-sm">خرید</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">سرویس</div>
+                        <div class="product-title">قالب Service Max</div>
+                        <div class="product-price">$44</div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="business">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x225/ff3333/ffffff?text=Startup" alt="Startup">
+                        <div class="product-id">#005</div>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm">مشاهده</button>
+                            <button class="btn btn-secondary btn-sm">خرید</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">کسب‌وکار</div>
+                        <div class="product-title">قالب Startup</div>
+                        <div class="product-price">$29</div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-category="shop">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x225/00d4ff/ffffff?text=Commerce" alt="Commerce">
+                        <div class="product-id">#006</div>
+                    </div>
+                    <div class="product-overlay">
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-sm">مشاهده</button>
+                            <button class="btn btn-secondary btn-sm">خرید</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">فروشگاه</div>
+                        <div class="product-title">قالب Commerce</div>
+                        <div class="product-price">$69</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1670,32 +1244,348 @@
     <section class="features-section" id="features">
         <div class="container">
             <div class="section-header">
-                <h2>چرا <span>ما</span>؟</h2>
-                <p>ویژگی‌های منحصر به فرد ما را کشف کنید</p>
+                <h2>ویژگی‌های <span>شگفت‌انگیز</span></h2>
+                <p>تمام ابزارهای مورد نیاز برای موفقیت کسب‌وکار دیجیتالی شما</p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>سریع و بهینه</h3>
-                    <p>تمام قالب‌ها برای حداکثر سرعت و کارایی بهینه‌شده‌اند.  لود شدن سریع و عملکرد بی‌نقص</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>سرعت بالا</h3>
+                    <p>قالب‌ها به‌طور کامل بهینه‌شده و سریع‌ترین عملکرد را فراهم می‌کنند</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>طراحی مدرن</h3>
-                    <p>طراحی‌های خلاقانه و بروز برای تمام پروژه‌ها. رنگ‌ها و تایپوگرافی دقیق شده</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>طراحی واکنشی</h3>
+                    <p>تمامی قالب‌ها بر روی تمام دستگاه‌ها به‌طور کامل کار می‌کنند</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>آسان برای تغییر</h3>
-                    <p>کد تمیز، منظم و قابل ویرایش. حتی مبتدی‌ها می‌توانند به سادگی تغییر دهند</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>امنیت کامل</h3>
+                    <p>سطح بالاترین استانداردهای امنیتی برای محافظت از داده‌های شما</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>واکنش‌گرا</h3>
-                    <p>سازگار با تمام دستگاه‌ها و اندازه‌های صفحه.  تجربه بی‌نقص در موبایل و دسکتاپ</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>آسان‌تر شخصی‌سازی</h3>
+                    <p>ویرایش و شخصی‌سازی قالب‌ها بدون نیاز به کد نویسی</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>ایمن و معتبر</h3>
-                    <p>کد امن و تست‌شده. بروزرسانی منظم و پشت
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>تهیه‌شده برای SEO</h3>
+                    <p>تمام قالب‌ها برای موتورهای جستجو بهینه‌شده‌اند</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>پشتیبانی 24/7</h3>
+                    <p>تیم پشتیبانی ما همیشه آماده کمک و راهنمایی است</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LOGIN MODAL ===== -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-modal">
+            <h2>
+                <i class="fas fa-sign-in-alt"></i>
+                ورود
+            </h2>
+            <p>وارد حساب خود شوید</p>
+            <form class="login-form" id="loginForm">
+                <input type="email" class="form-input" id="emailInput" placeholder="ایمیل" required>
+                <input type="password" class="form-input" id="passwordInput" placeholder="رمز عبور" required>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="login-buttons">
+                    <button type="submit" class="btn btn-primary">ورود</button>
+                    <button type="button" class="btn btn-outline" id="closeLoginBtn">بستن</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN DASHBOARD ===== -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <div class="dashboard-container">
+            <div class="dashboard-sidebar">
+                <h3>
+                    <i class="fas fa-tachometer-alt"></i>
+                    پنل مدیریت
+                </h3>
+                <ul class="sidebar-menu">
+                    <li>
+                        <button class="dashboard-nav-btn active" data-section="overview">
+                            <i class="fas fa-chart-line"></i>
+                            <span>نمای کلی</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dashboard-nav-btn" data-section="products">
+                            <i class="fas fa-box"></i>
+                            <span>محصولات</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dashboard-nav-btn" data-section="users">
+                            <i class="fas fa-users"></i>
+                            <span>کاربران</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dashboard-nav-btn" data-section="analytics">
+                            <i class="fas fa-analytics"></i>
+                            <span>تحلیل‌ها</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dashboard-nav-btn" data-section="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>تنظیمات</span>
+                        </button>
+                    </li>
+                </ul>
+                <div class="sidebar-logout">
+                    <button id="logoutBtn" class="btn btn-outline" style="width: 100%;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        خروج
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-main">
+                <div class="dashboard-header">
+                    <h2>
+                        <i class="fas fa-chart-bar"></i>
+                        نمای کلی
+                    </h2>
+                    <div>
+                        <span id="userGreeting" style="color: var(--text-secondary);">خوش‌آمدید</span>
+                    </div>
+                </div>
+
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-card-value">1250</div>
+                        <div class="stat-card-label">کل فروش</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value">892</div>
+                        <div class="stat-card-label">کاربران فعال</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value">45. 2K</div>
+                        <div class="stat-card-label">بازدید</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-value">98%</div>
+                        <div class="stat-card-label">رضایت</div>
+                    </div>
+                </div>
+
+                <div id="overviewContent">
+                    <h3 style="margin-bottom: 20px; color: var(--text-primary);">خوش‌آمدید به پنل مدیریت</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        این پنل برای مدیریت کامل سایت و محصولات شما طراحی‌شده است. 
+                        می‌توانید از منوی سمت چپ بخش‌های مختلف را مشاهده کنید.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== NAVBAR SCROLL EFFECT =====
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== LOGIN MODAL =====
+        const loginBtn = document.getElementById('loginBtn');
+        const loginOverlay = document.getElementById('loginOverlay');
+        const closeLoginBtn = document.getElementById('closeLoginBtn');
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('emailInput');
+        const passwordInput = document.getElementById('passwordInput');
+        const errorMessage = document.getElementById('errorMessage');
+        const adminDashboard = document.getElementById('adminDashboard');
+
+        // Open login modal
+        loginBtn.addEventListener('click', () => {
+            loginOverlay.classList.add('active');
+            emailInput.focus();
+        });
+
+        // Close login modal
+        closeLoginBtn.addEventListener('click', () => {
+            loginOverlay. classList.remove('active');
+            loginForm.reset();
+            errorMessage.classList.remove('show');
+        });
+
+        // Close modal when clicking on overlay
+        loginOverlay.addEventListener('click', (e) => {
+            if (e.target === loginOverlay) {
+                loginOverlay.classList.remove('active');
+                loginForm.reset();
+                errorMessage.classList.remove('show');
+            }
+        });
+
+        // Handle form submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = emailInput.value. trim();
+            const password = passwordInput.value.trim();
+
+            // Simple validation
+            if (!email || ! password) {
+                errorMessage.textContent = 'لطفاً تمام فیلدها را پر کنید';
+                errorMessage.classList.add('show');
+                return;
+            }
+
+            if (! isValidEmail(email)) {
+                errorMessage.textContent = 'ایمیل معتبر نیست';
+                errorMessage.classList. add('show');
+                return;
+            }
+
+            if (password.length < 6) {
+                errorMessage.textContent = 'رمز عبور حداقل 6 کاراکتر باید باشد';
+                errorMessage. classList.add('show');
+                return;
+            }
+
+            // Login successful
+            errorMessage.classList.remove('show');
+            loginOverlay.classList.remove('active');
+            adminDashboard.classList.add('active');
+            
+            // Update greeting
+            const userName = email.split('@')[0];
+            document.getElementById('userGreeting'). textContent = `خوش‌آمدید ${userName}`;
+            
+            loginForm.reset();
+        });
+
+        // Email validation
+        function isValidEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        // ===== ADMIN DASHBOARD =====
+        const dashboardNavButtons = document.querySelectorAll('.dashboard-nav-btn');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        dashboardNavButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                dashboardNavButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const section = btn.dataset.section;
+                const overviewContent = document.getElementById('overviewContent');
+                
+                let content = '';
+                const icon = btn.querySelector('i'). className;
+                const title = btn.querySelector('span').textContent;
+                
+                switch(section) {
+                    case 'overview':
+                        content = '<h3 style="margin-bottom: 20px; color: var(--text-primary);">نمای کلی</h3><p style="color: var(--text-secondary);">اطلاعات کلی سایت و عملکرد آن</p>';
+                        break;
+                    case 'products':
+                        content = '<h3 style="margin-bottom: 20px; color: var(--text-primary);">مدیریت محصولات</h3><p style="color: var(--text-secondary);">مشاهده و ویرایش تمام محصولات</p>';
+                        break;
+                    case 'users':
+                        content = '<h3 style="margin-bottom: 20px; color: var(--text-primary);">مدیریت کاربران</h3><p style="color: var(--text-secondary);">مشاهده و مدیریت تمام کاربران سایت</p>';
+                        break;
+                    case 'analytics':
+                        content = '<h3 style="margin-bottom: 20px; color: var(--text-primary);">تحلیل‌ها</h3><p style="color: var(--text-secondary);">نمودار و آمار تفصیلی بازدید و فروش</p>';
+                        break;
+                    case 'settings':
+                        content = '<h3 style="margin-bottom: 20px; color: var(--text-primary);">تنظیمات</h3><p style="color: var(--text-secondary);">تنظیمات سایت و حساب کاربری</p>';
+                        break;
+                }
+                
+                overviewContent.innerHTML = content;
+            });
+        });
+
+        // Logout functionality
+        logoutBtn. addEventListener('click', () => {
+            adminDashboard.classList.remove('active');
+            loginForm.reset();
+        });
+
+        // ===== PRODUCT FILTERS =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('. product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                // Filter products
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card. style.animation = 'slideUp 0.5s ease-out';
+                        }, 0);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ===== START BUTTON =====
+        document.getElementById('startBtn').addEventListener('click', () => {
+            loginBtn.click();
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e. preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ===== DARK MODE SMOOTH LOADING =====
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.animation = 'fadeIn 0.5s ease-out';
+        });
+    </script>
+</body>
+</html>
